@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Chitthi — Write a letter to your future self. Handcrafted, wax-sealed letters delivered across Nepal. Standard, future, and premium letter services.">
+    <meta name="keywords" content="Chitthi, Nepal, handwritten letters, future letters, wax seal, letter delivery, Kathmandu">
+    <meta name="author" content="Chitthi — Team Manka Kura">
+    <meta property="og:title" content="Chitthi — Letters That Travel Through Time">
+    <meta property="og:description" content="Write a letter to your future self. Handcrafted, wax-sealed letters delivered across Nepal.">
+    <meta property="og:type" content="website">
+    <title>Chitthi — Letters That Travel Through Time</title>
+    <link rel="icon" type="image/png" href="images/icon.png">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body data-theme="dark">
+
+    <!-- ========================================
+         ANNOUNCEMENT BAR
+         ======================================== -->
+    <div class="announcement-bar">
+        <div class="delivery-banner">
+             <span>✦ &nbsp; 100% Free Delivery Within Nepal &nbsp; ✦</span>
+            <button class="theme-toggle" aria-label="Toggle theme" style="color: var(--gold);">✦Dark Theme</button>
+        </div>
+    </div>
+
+    <!-- ========================================
+         NAVIGATION BAR
+         ======================================== -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <a href="#home" class="nav-logo">
+                <img src="images/logo.png" alt="Chitthi Logo" class="logo-img" style="height: 120px; transform: translateY(10px);">
+                <span>Chitthi</span>
+            </a>
+
+            <ul class="nav-links">
+                <li><a href="#home" class="nav-link active"> Home</a></li>
+                <li><a href="#letters" class="nav-link"> Letters</a></li>
+                <li><a href="#how-it-works" class="nav-link"> How It Works</a></li>
+                <li><a href="#our-story" class="nav-link"> Our Story</a></li>
+               <!-- <li><a href="#events" class="nav-link"> Events</a></li> -->
+                <li><a href="#faq" class="nav-link"> FAQ</a></li>
+                <li><a href="#contact" class="nav-link"> Contact</a></li>
+            </ul>
+
+            <button class="hamburger" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu">
+        <a href="#home" class="nav-link"> Home</a>
+        <a href="#letters" class="nav-link"> Letters</a>
+        <a href="#how-it-works" class="nav-link"> How It Works</a>
+        <a href="#our-story" class="nav-link"> Our Story</a>
+        <a href="#events" class="nav-link"> Events</a>
+        <a href="#faq" class="nav-link"> FAQ</a>
+        <a href="#contact" class="nav-link"> Contact</a>
+        <a href="#" class="btn-order" target="_blank" rel="noopener"> ORDER NOW</a>
+    </div>
+
+    <!-- ========================================
+         SECTION 1: HOME / HERO
+         ======================================== -->
+    <section id="home" class="hero-section">
+        <div class="hero-bg" style="background-image: url('images/hero_bg.jpg');"></div>
+        <div class="particles"></div>
+        <div class="hero-content animate-on-scroll">
+            <p class="hero-subtitle" id="hero-tagline">Every moment deserves to be remembered.</p>
+            <h1 class="hero-title">Write a letter to<br>your future self</h1>
+            <p class="hero-subtitle" style="margin-top: 10px; font-size: 1.1rem; opacity: 0.85;">
+                Write a letter today. Let it arrive exactly when it matters.
+            </p>
+            <div class="hero-actions">
+                <a href="#" class="btn-primary" target="_blank" rel="noopener">✦ Write Now</a>
+                <a href="#events" class="btn-secondary">Explore Clubs</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Wave Divider -->
+    <div class="wave-divider">
+        <svg viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0,40 C360,80 720,0 1440,40 L1440,80 L0,80 Z" fill="var(--bg-secondary)" style="animation: wave-motion 8s ease-in-out infinite;"/>
+        </svg>
+    </div>
+
+    <!-- ========================================
+         TESTIMONIALS / SOCIAL PROOF
+         ======================================== -->
+    <section class="testimonials-section">
+        <div class="container"> <br> <br>
+            <h2 class="section-title animate-on-scroll">Words from Our Senders</h2>
+            <div class="testimonial-carousel">
+                <div class="carousel-track">
+                    <div class="testimonial-card">
+                        <p class="testimonial-quote">
+                            I sent a letter to my best friend who moved to Australia. She cried when she received it. Thank you Chitthi!
+                        </p>
+                        <p class="testimonial-author">— Samiksha, Kathmandu</p>
+                    </div>
+                    <div class="testimonial-card">
+                        <p class="testimonial-quote">
+                            I wrote a letter to myself on my 25th birthday, to be opened when I turn 30. Knowing it's sealed and waiting gives me the most beautiful sense of hope.
+                        </p>
+                        <p class="testimonial-author">— Ankit, Pokhara</p>
+                    </div>
+                    <div class="testimonial-card">
+                        <p class="testimonial-quote">
+                            My grandmother can't use a phone. I sent her a handwritten letter through Chitthi and she called my mom crying tears of joy. This is priceless.
+                        </p>
+                        <p class="testimonial-author">— Priya, Bhaktapur</p>
+                    </div>
+                    <div class="testimonial-card">
+                        <p class="testimonial-quote">
+                            Gave my partner a sealed Future Letter as an anniversary gift — to be opened on our 10th anniversary. The most romantic thing I've ever done.
+                        </p>
+                        <p class="testimonial-author">— Roshan, Lalitpur</p>
+                    </div>
+                </div>
+                <div class="carousel-dots"></div>
+            </div>
+
+            <!-- Letter of the Month -->
+            <div class="letter-of-month animate-on-scroll" style="margin-top: 60px; text-align: center;">
+                <p class="gold-text" style="font-family: var(--font-display); font-size: 1rem; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 10px;">✦ Letter of the Month ✦</p>
+                <p class="testimonial-quote">
+                    To my future self: I hope you still remember the taste of mom's sel roti on Dashain morning. I hope you are kind. I hope you kept your promises.
+                </p>
+                <p style="font-family: var(--font-ui); font-size: 0.85rem; color: var(--text-muted); margin-top: 15px;">— Anonymous sender, Chitwan </p>
+            <br>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================
+         SECTION 2: LETTERS / PRICING
+         ======================================== -->
+    <section id="letters" class="section">
+        <div class="container">
+            <h2 class="section-title animate-on-scroll">Our Letters</h2>
+            <div class="pricing-grid">
+
+                <!-- Standard Letter -->
+                <div class="pricing-card tilt-card animate-on-scroll">
+                    <div class="pricing-img">
+                        <img src="images/letter_standard.jpg" alt="Standard Letter — wax-sealed envelope" loading="lazy">
+                    </div>
+                    <div class="pricing-body"><br>
+                        <h3 class="pricing-title">Standard Letter</h3>
+                        <p class="pricing-price">NPR 130</p>
+                        <ul class="pricing-features">
+                            <li>Customizable date within a month</li>
+                            <li>Deep wine-red wax seal</li>
+                            <li>An exclusive monthly card</li>
+                            <li>Free delivery within Nepal</li>
+                        </ul>
+                        <a href="#" class="btn-primary" target="_blank" rel="noopener"> Order </a>
+                    </div>
+                </div>
+
+                <!-- Future Letter — FEATURED -->
+                <div class="pricing-card featured tilt-card animate-on-scroll">
+                    <span class="badge-popular">✦ Most Popular</span>
+                    <div class="pricing-img">
+                        <img src="images/letter_premium.jpg" alt="Future Letter — sealed with clock and hourglass" loading="lazy">
+                    </div>
+                    <div class="pricing-body"><br>
+                        <h3 class="pricing-title">Future Letter</h3>
+                        <p class="pricing-price">NPR 100</p>
+                        <ul class="pricing-features">
+                            <li>Customizable date within 5 years</li>
+                            <li>Stored securely until your date</li>
+                            <li>Delivery fee within 1 year costs NRP 50, 5 year costs NRP250</li>
+                        </ul>
+                        <a href="#" class="btn-primary" target="_blank" rel="noopener"> Order </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Wave Divider -->
+    <div class="wave-divider">
+        <svg viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0,40 C360,80 720,0 1440,40 L1440,80 L0,80 Z" fill="var(--bg-secondary)" style="animation: wave-motion 8s ease-in-out infinite;"/>
+        </svg>
+    </div>
+
+    <!-- ========================================
+         SECTION 3: HOW IT WORKS
+         ======================================== -->
+    <section id="how-it-works" class="section" style="background-color: var(--bg-secondary);">
+        <div class="container">
+            <h2 class="section-title animate-on-scroll">How It Works</h2>
+            <div class="timeline-wrapper">
+                <div class="timeline">
+
+                    <div class="timeline-step animate-fade-left stagger-1">
+                        <div class="step-number">I</div>
+                        <div class="timeline-content">
+                            <h3 class="step-title"> Choose Your Letter</h3>
+                            <p class="step-desc">Pick from Standard, Future Letter.</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-step animate-fade-right stagger-2">
+                        <div class="step-number">II</div>
+                        <div class="timeline-content">
+                            <h3 class="step-title"> Fill the Google Form</h3>
+                            <p class="step-desc">Write us your message, the recipient's address, and when you want it delivered.</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-step animate-fade-left stagger-3">
+                        <div class="step-number">III</div>
+                        <div class="timeline-content">
+                            <h3 class="step-title"> Pay via eSewa / Bank Transfer</h3>
+                            <p class="step-desc">Scan the QR code or transfer to our bank account. Then confirm your payment.</p>
+                            <div style="margin-top: 15px; padding: 20px; background: var(--bg); border: 1px dashed var(--gold); border-radius: 12px; text-align: center;">
+                                <p style="font-family: var(--font-ui); font-size: 0.85rem; color: var(--gold);"> eSewa / Khalti QR Code</p>
+                                <div style="width: 140px; height: 140px; margin: 12px auto; background: var(--cream); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: var(--accent); font-family: var(--font-ui); font-size: 0.75rem;">
+                                    QR Placeholder
+                                </div>
+                                <p style="font-family: var(--font-ui); font-size: 0.75rem; color: var(--text-muted);">Replace with your real QR image</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-step animate-fade-right stagger-4">
+                        <div class="step-number">IV</div>
+                        <div class="timeline-content">
+                            <h3 class="step-title"> We Prepare & Seal Your Letter</h3>
+                            <p class="step-desc">We send you the proof of your letter as a picture.</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-step animate-fade-left stagger-5">
+                        <div class="step-number">V</div>
+                        <div class="timeline-content">
+                            <h3 class="step-title"> Delivered to You (or Stored for the Future)</h3>
+                            <p class="step-desc">Standard letters ship within the first month. Future letters are stored in acid-free envelopes with digital backup until your chosen date.</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-step animate-fade-right stagger-6">
+                        <div class="step-number">VI</div>
+                        <div class="timeline-content">
+                            <h3 class="step-title"> WhatsApp Confirmation</h3>
+                            <p class="step-desc">You'll receive a WhatsApp message confirming your letter has been sent.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================
+         SECTION 4: OUR STORY
+         ======================================== -->
+    <section id="our-story" class="section">
+        <div class="container">
+            <h2 class="section-title animate-on-scroll">Our Story</h2>
+            <div class="story-content ink-reveal">
+                <div class="story-paper-card">
+                    <!-- Abstract Background Pattern & Line Accents -->
+                    <div class="paper-dots-pattern"></div>
+                    <svg class="abstract-decor top-left" width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="25" cy="25" r="3" fill="#C5A059" opacity="0.7"/>
+                        <circle cx="55" cy="18" r="2" fill="#C5A059" opacity="0.4"/>
+                        <circle cx="18" cy="55" r="2" fill="#C5A059" opacity="0.4"/>
+                        <line x1="25" y1="25" x2="95" y2="25" stroke="#C5A059" stroke-width="1" stroke-dasharray="4 4" opacity="0.4"/>
+                        <line x1="25" y1="25" x2="25" y2="95" stroke="#C5A059" stroke-width="1" stroke-dasharray="4 4" opacity="0.4"/>
+                        <circle cx="95" cy="25" r="4" stroke="#722F37" stroke-width="1.5" fill="none" opacity="0.5"/>
+                        <circle cx="25" cy="95" r="4" stroke="#722F37" stroke-width="1.5" fill="none" opacity="0.5"/>
+                    </svg>
+                    <svg class="abstract-decor bottom-right" width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="95" cy="95" r="3" fill="#C5A059" opacity="0.7"/>
+                        <circle cx="65" cy="102" r="2" fill="#C5A059" opacity="0.4"/>
+                        <circle cx="102" cy="65" r="2" fill="#C5A059" opacity="0.4"/>
+                        <line x1="95" y1="95" x2="25" y2="95" stroke="#C5A059" stroke-width="1" stroke-dasharray="4 4" opacity="0.4"/>
+                        <line x1="95" y1="95" x2="95" y2="25" stroke="#C5A059" stroke-width="1" stroke-dasharray="4 4" opacity="0.4"/>
+                        <circle cx="25" cy="95" r="4" stroke="#722F37" stroke-width="1.5" fill="none" opacity="0.5"/>
+                        <circle cx="95" cy="25" r="4" stroke="#722F37" stroke-width="1.5" fill="none" opacity="0.5"/>
+                    </svg>
+
+                    <p class="pull-quote">A letter is a promise you keep to your future.</p>
+                    <div class="story-text">
+                        <p>Chitthi didn't begin with a grand business idea; it began in the quiet pages of a childhood diary. Growing up, I wasn't really good at making friends. While other kids had friend circles I often found myself all alone outside. And my notebook became my only refuge.</p>
+                        <p>I would pour my feelings into those pages, but sometimes, a spark of hope would peek through. My younger self would write directly to the future me, asking the most important question a lonely kid could think of: <em>"Did you finally make a lot of friends?"</em></p>
+                        <p>Years later, reading those entries felt like a time machine. The words I wrote in the dark brought so much light to my present. It proved that sometimes, the words we need most are the ones we wrote years ago.</p>
+                        <p>We built Chitthi to capture that exact magic. It's a way for everyone to send letters through time, to family, to friends, or even to yourself. Because a letter doesn't just deliver a message; it delivers a piece of who you were at the exact moment you wrote it.</p>
+                        <p>Chitthi aims to arrive not when it's convenient, but when it matters most. On the days we wish we had someone's voice, we have their words.</p>
+                    </div>
+                    <p class="team-signature">— the Chitthi team ✦</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================
+         SECTION 5: EVENTS
+         ======================================== -->
+    <!--
+    <section id="events" class="section" style="background-color: var(--bg-secondary);">
+        <div class="container">
+            <div class="event-card animate-on-scroll">
+                <span class="badge">✦ COMING SOON</span>
+                <h2 class="event-title">The Swastik Letter Writing Circle</h2>
+                <p style="font-family: var(--font-accent); font-style: italic; font-size: 1.15rem; color: var(--text-muted); max-width: 700px; margin: 0 auto 30px; line-height: 1.7;">
+                    An intimate morning gathering in Swastik College for analog stationery enthusiasts. Bring your letter writing supplies, scrapbooks, and sit down to write physical letters to your future selves. Customized vintage envelope packets, hot wax seal gear, and locally brewed warm tea will be provided completely free of charge.
+                </p>
+                <p style="font-family: var(--font-display); color: var(--gold); font-size: 1.1rem; margin-bottom: 30px;">
+                    EXPECTED: 23rd of August 2026
+                </p>
+            -->
+                <!-- Countdown Timer --><!--
+                <div class="countdown">
+                    <div class="countdown-box">
+                        <span class="countdown-num" id="countdown-days">00</span>
+                        <span class="countdown-label">Days</span>
+                    </div>
+                    <div class="countdown-box">
+                        <span class="countdown-num" id="countdown-hours">00</span>
+                        <span class="countdown-label">Hours</span>
+                    </div>
+                    <div class="countdown-box">
+                        <span class="countdown-num" id="countdown-mins">00</span>
+                        <span class="countdown-label">Minutes</span>
+                    </div>
+                    <div class="countdown-box">
+                        <span class="countdown-num" id="countdown-secs">00</span>
+                        <span class="countdown-label">Seconds</span>
+                    </div>
+                </div> -->
+
+                <!-- Email Capture --><!--
+                <p style="font-family: var(--font-ui); color: var(--text-muted); font-size: 0.9rem; margin-top: 40px;">
+                    Join the Circle — Enter your email to receive early invitations and exclusive updates.
+                </p>
+                <form class="email-capture" id="notify-form">
+                    <input type="email" placeholder="your@email.com" required aria-label="Email for event notifications">
+                    <button type="submit" class="btn-primary">Notify Me</button>
+                </form>
+                <p id="notify-success" style="display: none; font-family: var(--font-accent); font-style: italic; color: var(--gold); margin-top: 15px;">
+                    ✦ You're on the list! We'll be in touch. ✦
+                </p>
+            </div>
+        </div>
+    </section>
+-->
+    <!-- ========================================
+         SECTION 6: FAQ
+         ======================================== -->
+    <section id="faq" class="section">
+        <div class="container">
+            <h2 class="section-title animate-on-scroll">Frequently Asked Questions</h2>
+            <div class="faq-list">
+
+                <div class="faq-item animate-on-scroll">
+                    <button class="faq-question">
+                        <span>How do I order?</span>
+                        <span class="faq-icon">▾</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Fill the Google Form with your message and recipient details → Pay via eSewa QR or Bank Transfer → We print, seal, and deliver. That's it!</p>
+                    </div>
+                </div>
+
+                <div class="faq-item animate-on-scroll">
+                    <button class="faq-question">
+                        <span>How long does delivery take?</span>
+                        <span class="faq-icon">▾</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Delivery is customisable! Standard letters are delivered within the 1st week to 1st month. Future Letters are stored securely and delivered on your chosen date — up to 5 years in the future.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item animate-on-scroll">
+                    <button class="faq-question">
+                        <span>Can I send a letter to someone else?</span>
+                        <span class="faq-icon">▾</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Yes! Just fill in their name and address in the Google Form. You can send a letter to anyone in Nepal — friends, family, partners, or even a stranger you want to surprise.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item animate-on-scroll">
+                    <button class="faq-question">
+                        <span>How do I pay?</span>
+                        <span class="faq-icon">▾</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>We accept eSewa and Khalti via QR code, as well as direct bank transfers. The QR code and bank details are shown on the payment page and in the Google Form confirmation.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item animate-on-scroll">
+                    <button class="faq-question">
+                        <span>What if the recipient moves?</span>
+                        <span class="faq-icon">▾</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>You can contact us via WhatsApp to update the address within the first few days of the last week before your delivery date. We'll make sure it gets there.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item animate-on-scroll">
+                    <button class="faq-question">
+                        <span>Do you store letters safely?</span>
+                        <span class="faq-icon">▾</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Absolutely. All Future Letters are stored in acid-free archival envelopes with a digital backup. Your letter will be preserved in pristine condition until its delivery date.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item animate-on-scroll">
+                    <button class="faq-question">
+                        <span>Can I cancel my order?</span>
+                        <span class="faq-icon">▾</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Yes — within 24 hours of placing your order, you can cancel for a full refund. After 24 hours, cancellations are handled on a case-by-case basis. Contact us on WhatsApp.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item animate-on-scroll">
+                    <button class="faq-question">
+                        <span>What's a Future Letter?</span>
+                        <span class="faq-icon">▾</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>A Future Letter is a letter you write today that gets delivered on a specific date in the future — your birthday, graduation, wedding day, or any date that matters. We store it securely until then and deliver it right on time.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================
+         SECTION 7: CONTACT
+         ======================================== -->
+    <section id="contact" class="section" style="background-color: var(--bg-secondary);">
+        <div class="container">
+            <h2 class="section-title animate-on-scroll">Connect With Us</h2>
+            <div class="contact-grid">
+
+                <!-- Contact Cards -->
+                <div class="contact-info animate-on-scroll">
+                    <a href="https://wa.me/9779769031951" target="_blank" rel="noopener" class="contact-card">
+                        <span class="contact-icon">📱</span>
+                        <div class="contact-details">
+                            <h4>WhatsApp</h4>
+                            <p>+977-9769031951</p>
+                        </div>
+                    </a>
+                    <a href="https://instagram.com/chitthi.np" target="_blank" rel="noopener" class="contact-card">
+                        <span class="contact-icon">📷</span>
+                        <div class="contact-details">
+                            <h4>Instagram</h4>
+                            <p>@chitthi.np</p>
+                        </div>
+                    </a>
+                    <a href="https://facebook.com/chitthi.np" target="_blank" rel="noopener" class="contact-card">
+                        <span class="contact-icon">📘</span>
+                        <div class="contact-details">
+                            <h4>Facebook</h4>
+                            <p>/chitthi.np</p>
+                        </div>
+                    </a>
+                    <a href="viber://chat?number=%2B9779769031851" class="contact-card">
+                        <span class="contact-icon">💬</span>
+                        <div class="contact-details">
+                            <h4>Viber</h4>
+                            <p>+977-9769031851</p>
+                        </div>
+                    </a>
+                    <a href="mailto:npchitthil@gmail.com" class="contact-card">
+                        <span class="contact-icon">✉️</span>
+                        <div class="contact-details">
+                            <h4>Email</h4>
+                            <p>npchitthil@gmail.com</p>
+                        </div>
+                    </a>
+                    <div class="response-badge">
+                        <span>⚡ Average response time: Within 5 hours</span>
+                    </div>
+                </div>
+
+                <!-- Contact Form -->
+                <form class="contact-form animate-on-scroll" id="contact-form" action="https://formspree.io/f/YOUR_ID" method="POST">
+                    <h3 style="font-family: var(--font-display); font-size: 1.3rem; color: var(--gold); margin-bottom: 20px;">Send Us a Message</h3>
+                    <div class="form-group">
+                        <label for="contact-name">Your Name</label>
+                        <input type="text" id="contact-name" name="name" placeholder="Your full name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="contact-email">Email Address</label>
+                        <input type="email" id="contact-email" name="email" placeholder="you@example.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="contact-message">Your Message</label>
+                        <textarea id="contact-message" name="message" rows="5" placeholder="How can we help you?" required></textarea>
+                    </div>
+                    <button type="submit" class="btn-primary" style="width: 100%;">Send Message ✦</button>
+                    <p id="form-status" style="display: none; font-family: var(--font-accent); font-style: italic; margin-top: 15px; text-align: center;"></p>
+                </form>
+
+            </div>
+        </div>
+    </section>
+
+<!-- CTA BAND -->
+  <section class="cta-band" style="text-align: center; padding: 80px 20px; background: linear-gradient(135deg, var(--accent), #4A1A1F); position: relative; overflow: hidden;">
+    <div class="container" style="position: relative; z-index: 1;">
+      <h4 style="color: var(--gold); font-family: var(--font-accent); font-style: italic; font-size: 1.2rem; margin-bottom: 15px;">Write a letter today. Let it arrive exactly when it matters.</h4>
+      <h2 style="font-family: var(--font-display); font-size: 2.2rem; color: var(--cream); margin-bottom: 30px;">Every moment deserves to be remembered.</h2>
+      <div class="actions" style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+          <a href="#" class="btn-primary">Write Now</a>
+          <a href="#events" class="btn-secondary" style="color: var(--cream); border-color: var(--cream);">Explore Clubs</a>
+      </div>
+    </div>
+  </section>
+
+    <!-- ========================================
+         FOOTER
+         ======================================== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-top" style="display: flex; justify-content: space-between; align-items: flex-start; gap: 40px; padding-bottom: 40px; border-bottom: 1px solid var(--glass-border); flex-wrap: wrap;">
+                <div class="footer-brand" style="flex: 1; min-width: 250px;">
+                    <div style="margin-bottom: 15px;">
+                        <a href="#home" class="nav-logo" style="display: inline-flex; align-items: center; gap: 10px;">
+                            <img src="images/logo.png" alt="Chitthi Logo" class="logo-img" style="height: 60px;">
+                            <span style="font-size: 1.5rem; font-family: var(--font-display); color: var(--gold);">Chitthi</span>
+                        </a>
+                    </div>
+                    <p style="font-family: var(--font-accent); font-style: italic; color: var(--text-muted); font-size: 1.1rem; line-height: 1.6;">
+                        Nepal's first future letter platform. Preserving emotions and delivering them exactly when they matter most. Letters that travel through time.
+                    </p>
+                </div>
+
+                <div class="footer-links" style="display: flex; flex-direction: column; gap: 10px;">
+                    <h4 style="font-family: var(--font-display); color: var(--gold); font-size: 0.9rem; margin-bottom: 12px;">Quick Links</h4>
+                    <a href="#home">Home</a>
+                    <a href="#letters">Letters</a>
+                    <a href="#how-it-works">How It Works</a>
+                    <a href="#our-story">Our Story</a>
+                    <a href="#faq">FAQ</a>
+                    <a href="#contact">Contact</a>
+                </div>
+
+                <div class="footer-links">
+                    <h4 style="font-family: var(--font-display); color: var(--gold); font-size: 0.9rem; margin-bottom: 12px;">Legal</h4>
+                    <a href="#" data-modal="privacy">Privacy Policy</a>
+                    <a href="#" data-modal="terms">Terms of Service</a>
+                </div>
+
+                <div class="footer-social">
+                    <h4 style="font-family: var(--font-display); color: var(--gold); font-size: 0.9rem; margin-bottom: 12px;">Follow Us</h4>
+                    <div style="display: flex; gap: 15px; justify-content: center;">
+                        <a href="https://instagram.com/chitthi.np" target="_blank" rel="noopener" style="font-size: 1.5rem; color: var(--text-muted); text-decoration: none; transition: color 0.3s;">📷</a>
+                        <a href="https://facebook.com/chitthi.np" target="_blank" rel="noopener" style="font-size: 1.5rem; color: var(--text-muted); text-decoration: none; transition: color 0.3s;">📘</a>
+                        <a href="https://wa.me/9779769031951" target="_blank" rel="noopener" style="font-size: 1.5rem; color: var(--text-muted); text-decoration: none; transition: color 0.3s;">📱</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>© 2026 Chitthi. All rights reserved. Made with ♥ in Nepal.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ========================================
+         MODALS
+         ======================================== -->
+
+    <!-- Privacy Policy Modal -->
+    <div class="modal" id="modal-privacy">
+        <div class="modal-overlay"></div>
+        <div class="modal-content">
+            <button class="modal-close" aria-label="Close modal">✕</button>
+            <h2 style="font-family: var(--font-display); color: var(--gold); font-size: 1.5rem; margin-bottom: 20px;">Privacy Policy</h2>
+            <div style="font-family: var(--font-body); line-height: 1.8; color: var(--text);">
+                <p>At Chitthi, we understand that writing a letter is a deeply personal and vulnerable act. We treat your messages, recipient addresses, and contact parameters with the highest degree of respect, confidentiality, and security.</p>
+
+                <h3 style="font-family: var(--font-display); color: var(--gold); font-size: 1rem; margin: 25px 0 10px;">What We Store</h3>
+                <ul style="padding-left: 20px; margin-bottom: 15px;">
+                    <li>Name, Address, Phone, Email</li>
+                    <li>We <strong>DO NOT</strong> share your data with third parties</li>
+                    <li>We store future letters securely in acid-free envelopes + digital backup</li>
+                    <li>You can request deletion of your data at any time</li>
+                </ul>
+
+                <h3 style="font-family: var(--font-display); color: var(--gold); font-size: 1rem; margin: 25px 0 10px;">Zero-Read Policy</h3>
+                <p>Our team operates under a strict Zero-Read Policy for standard and scheduled letters. The printing process is automated and handled under strict confidentiality protocols. Senders can rest assured that their personal words are not parsed, reviewed, or shared with third parties.</p>
+
+                <h3 style="font-family: var(--font-display); color: var(--gold); font-size: 1rem; margin: 25px 0 10px;">Transactional Security</h3>
+                <p>Chitthi does not collect or store your payment details. All financial transactions are completed via integrated eSewa and Khalti APIs. Your session credentials and wallet keys are securely processed directly on their encrypted servers.</p>
+
+                <p style="margin-top: 25px; font-family: var(--font-accent); font-style: italic; color: var(--gold);">"Your letters are safe with us. We never share your data."</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Terms of Service Modal -->
+    <div class="modal" id="modal-terms">
+        <div class="modal-overlay"></div>
+        <div class="modal-content">
+            <button class="modal-close" aria-label="Close modal">✕</button>
+            <h2 style="font-family: var(--font-display); color: var(--gold); font-size: 1.5rem; margin-bottom: 20px;">Terms of Service</h2>
+            <div style="font-family: var(--font-body); line-height: 1.8; color: var(--text);">
+
+                <h3 style="font-family: var(--font-display); color: var(--gold); font-size: 1rem; margin: 25px 0 10px;">1. Scope of Service</h3>
+                <p>Chitthi is a hybrid technology and stationery platform operated by Team Manka Kura in Nepal. We provide online letter composing tools, future delivery scheduling systems, and physical printing, packaging, and shipping coordination across Nepal.</p>
+
+                <h3 style="font-family: var(--font-display); color: var(--gold); font-size: 1rem; margin: 25px 0 10px;">2. Delivery & Scheduling Guarantee</h3>
+                <p>For standard letters, we aim to deliver within the first month of purchase. For scheduled "Future Letters", we guarantee secure vault archiving of the digital draft and commit to physical doorstep dispatch in the weeks leading up to the designated date (up to a 5-year maximum).</p>
+
+                <h3 style="font-family: var(--font-display); color: var(--gold); font-size: 1rem; margin: 25px 0 10px;">3. Word Limit & Calligraphy Surcharges</h3>
+                <p>Standard letters are limited to 2,000 characters. Typing beyond this limit adds an automatic NPR 20 fee, up to a maximum of 4,000 characters total.</p>
+
+                <h3 style="font-family: var(--font-display); color: var(--gold); font-size: 1rem; margin: 25px 0 10px;">4. Prohibited Content</h3>
+                <p>Users are strictly prohibited from writing letters that contain threatening, defamatory, harassing, or illegal content. We reserve the right to flag and cancel any order that violates local laws of Nepal, without issuing a refund.</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
