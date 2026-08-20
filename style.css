@@ -301,13 +301,14 @@ body.no-scroll {
   display: flex;
   align-items: center;
   gap: 10px;
+
 }
 .nav-logo img {
   height: 45px;
 }
 .nav-logo span {
   font-family: var(--font-display);
-  color: var(--gold);
+  color: var(--accent);
   font-size: 1.5rem;
 }
 
@@ -1475,85 +1476,345 @@ body.no-scroll {
 }
 
 /* =========================================
-   MEDIA QUERIES
+   MEDIA QUERIES & MOBILE RESPONSIVENESS
    ========================================= */
-/* Tablet (768px - 1024px) */
+
+/* Tablet & Smaller Laptops (max-width: 1024px) */
 @media (max-width: 1024px) {
   .pricing-grid {
     flex-wrap: wrap;
+    justify-content: center;
   }
   .pricing-card {
-    min-width: 300px;
+    min-width: 290px;
   }
   .contact-grid {
     grid-template-columns: 1fr;
   }
+  .footer-top {
+    gap: 30px;
+  }
 }
 
-/* Mobile (< 768px) */
+/* Mobile & Tablets (max-width: 768px) */
 @media (max-width: 768px) {
+  /* Global section spacing */
   .section {
-    padding: 60px 0;
+    padding: 50px 0;
+  }
+  .container {
+    padding: 0 16px;
+  }
+  .section-title {
+    font-size: 1.75rem;
+    margin-bottom: 40px;
   }
 
-  .story-paper-card {
-    padding: 30px 22px;
+  /* Header & Navigation */
+  .navbar {
+    height: 64px;
   }
-  .story-paper-card .pull-quote {
-    font-size: 1.6rem;
-    margin: 10px 0 25px;
+  .logo-img {
+    height: 42px !important;
+    transform: none !important;
   }
-  .story-paper-card .story-text {
-    font-size: 1rem;
-    line-height: 1.75;
+  .nav-logo span {
+    font-size: 1.3rem;
   }
-  
   .nav-links {
     display: none;
   }
   .hamburger {
     display: flex;
   }
-  
-  .hero-title {
-    font-size: 2rem;
+
+  /* Mobile Dropdown Menu */
+  .mobile-menu {
+    position: fixed;
+    top: 64px;
+    left: 0;
+    width: 100%;
+    height: calc(100vh - 64px);
+    height: calc(100dvh - 64px);
+    background-color: var(--bg-card);
+    padding: 24px 20px;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    border-bottom: 1px solid var(--glass-border);
+    box-shadow: 0 15px 30px var(--shadow);
+    overflow-y: auto;
+    z-index: 998;
   }
-  
+  .mobile-menu.active {
+    display: flex;
+  }
+  .mobile-menu .nav-link {
+    font-size: 1.1rem;
+    padding: 10px 0;
+    width: 100%;
+    text-align: center;
+    border-bottom: 1px solid rgba(201, 168, 76, 0.08);
+  }
+  .mobile-menu .btn-order {
+    margin-top: 10px;
+    width: 100%;
+    max-width: 260px;
+    text-align: center;
+    padding: 12px 20px;
+  }
+
+  /* Hero Section */
+  #home {
+    min-height: 100dvh;
+    min-height: -webkit-fill-available;
+    padding: 90px 16px 50px;
+  }
+  .hero-title {
+    font-size: 2.1rem;
+    line-height: 1.25;
+    margin-bottom: 20px;
+  }
+  .hero-subtitle {
+    font-size: 1.1rem;
+  }
+
+  /* Testimonials */
+  .testimonial-carousel {
+    max-width: 100%;
+  }
+  .testimonial-card {
+    padding: 24px 18px;
+  }
+  .testimonial-quote {
+    font-size: 1.05rem;
+    line-height: 1.6;
+  }
+
+  /* Pricing Cards */
+  .pricing-grid {
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+  }
+  .pricing-card {
+    width: 100%;
+    max-width: 360px;
+  }
   .pricing-card.featured {
     transform: scale(1);
   }
   .pricing-card.featured:hover {
-    transform: translateY(-8px);
+    transform: translateY(-6px);
   }
-  
+
+  /* Timeline */
   .timeline::before {
-    left: 25px;
+    left: 20px;
   }
   .timeline-step {
     flex-direction: column !important;
     align-items: flex-start;
-    padding-left: 70px;
+    padding-left: 55px;
+    margin-bottom: 35px;
   }
   .step-number {
-    left: 25px;
+    left: 20px;
+    width: 40px;
+    height: 40px;
+    font-size: 1.1rem;
+    border-width: 3px;
   }
   .timeline-content {
     width: 100%;
+    padding: 20px 18px;
     text-align: left !important;
   }
-  
+  .step-title {
+    font-size: 1.2rem;
+  }
+
+  /* Our Story Paper Card */
+  .story-paper-card {
+    padding: 32px 24px;
+    border-radius: 14px;
+  }
+  .abstract-decor {
+    width: 70px;
+    height: 70px;
+    opacity: 0.45;
+  }
+  .story-paper-card .pull-quote {
+    font-size: 1.5rem;
+    margin: 10px 0 25px;
+    padding: 14px 0;
+  }
+  .story-paper-card .story-text {
+    font-size: 1rem;
+    line-height: 1.75;
+    text-align: left;
+  }
+
+  /* Events & Flip Countdown */
+  .event-card {
+    padding: 35px 18px;
+    border-radius: 16px;
+  }
   .countdown {
     flex-wrap: wrap;
+    gap: 10px;
   }
   .email-capture {
     flex-direction: column;
+    width: 100%;
   }
+  .email-capture input,
   .email-capture button {
     width: 100%;
   }
-  
+
+  /* Contact & Form (16px font-size prevents iOS auto-zoom on input focus) */
+  .contact-form input,
+  .contact-form textarea,
+  .email-capture input {
+    font-size: 16px !important;
+  }
+
+  /* CTA Band */
+  .cta-band {
+    padding: 50px 16px !important;
+  }
+  .cta-band h2 {
+    font-size: 1.6rem !important;
+  }
+  .cta-band h4 {
+    font-size: 1.05rem !important;
+  }
+  .cta-band .actions {
+    flex-direction: column;
+    width: 100%;
+    max-width: 280px;
+    margin: 0 auto;
+    gap: 12px;
+  }
+  .cta-band .actions .btn-primary,
+  .cta-band .actions .btn-secondary {
+    width: 100%;
+  }
+
+  /* Footer */
   .footer-top {
     flex-direction: column;
+    align-items: center;
     text-align: center;
+    gap: 30px;
+  }
+  .footer-links {
+    align-items: center;
+  }
+  .footer-links a {
+    padding: 6px 12px;
+  }
+
+  /* Modals */
+  .modal-content {
+    width: 92%;
+    padding: 30px 20px;
+    max-height: 85vh;
+    border-radius: 14px;
+  }
+  .modal-close {
+    top: 12px;
+    right: 12px;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
   }
 }
+
+/* Small Mobile Phones (max-width: 480px) */
+@media (max-width: 480px) {
+  .delivery-banner {
+    padding: 0 10px;
+    font-size: 0.75rem;
+  }
+  .delivery-banner span {
+    letter-spacing: 0;
+  }
+
+  .navbar {
+    height: 60px;
+  }
+  .logo-img {
+    height: 38px !important;
+    transform: none !important;
+  }
+  .nav-logo span {
+    font-size: 1.15rem;
+  }
+
+  .hero-title {
+    font-size: 1.75rem;
+    line-height: 1.25;
+  }
+  .hero-actions {
+    flex-direction: column;
+    width: 100%;
+    max-width: 280px;
+    margin: 0 auto;
+    gap: 12px;
+  }
+  .hero-actions .btn-primary,
+  .hero-actions .btn-secondary {
+    width: 100%;
+    min-height: 46px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .section-title {
+    font-size: 1.5rem;
+  }
+
+  /* Flip Counter on Small Phones */
+  .flip-countdown {
+    gap: 6px;
+  }
+  .flip-card {
+    width: 56px;
+    height: 70px;
+  }
+  .flip-top span,
+  .flip-bottom span,
+  .flip-card .flip-flap-top span,
+  .flip-card .flip-flap-bottom span {
+    font-size: 1.9rem;
+    line-height: 70px;
+  }
+  .flip-label {
+    font-size: 0.65rem;
+  }
+
+  /* Paper Card on Small Phones */
+  .story-paper-card {
+    padding: 24px 16px;
+  }
+  .abstract-decor {
+    width: 50px;
+    height: 50px;
+    opacity: 0.35;
+  }
+  .story-paper-card .pull-quote {
+    font-size: 1.25rem;
+  }
+
+  .modal-content {
+    padding: 24px 16px;
+  }
+}
+
