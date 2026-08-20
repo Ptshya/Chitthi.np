@@ -7,8 +7,8 @@
   --bg-card: #2A1A1E;
   --accent: #6B121C;
   --accent-hover: #bc2e3f;
-  --gold: #f5be58;
-  --gold-light: #e0c97e;
+  --gold: #ffd013;
+  --gold-light: #eded5b;
   --cream: #F5F0E1;
   --text: #F5F0E1;
   --text-muted: #B0A89E;
@@ -574,6 +574,20 @@ body.no-scroll {
   gap: 30px;
   justify-content: center;
   align-items: center;
+}
+
+.current-price {
+  font-size: 34px;
+  font-weight: 700;
+  color: #ffef0d; /* Vibrant red to catch attention */
+}
+
+        /* The original crossed-out price */
+.original-price {
+  font-size: 24px;
+  font-weight: 400;
+  color: #6B121C;
+  text-decoration: line-through;
 }
 
 .pricing-card {
