@@ -549,7 +549,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
     initForms();
 
-    // 13. Modals
+    // 13. Modals & Product Detail Overlays
     const modals = document.querySelectorAll('.modal');
     const modalTriggers = document.querySelectorAll('[data-modal]');
     const closeBtns = document.querySelectorAll('.modal-close');
@@ -568,6 +568,73 @@ document.addEventListener('DOMContentLoaded', () => {
                 targetModal.classList.add('active');
                 document.body.classList.add('no-scroll');
             }
+        });
+    });
+
+    // --- Product Detail Modal Logic (Exclusive to Future Letter) ---
+    const productDetailsData = {
+        future: {
+            title: "Letter to Future Details",
+            image: "images/letterfuture.png",
+            currentPrice: "NRS 150",
+            originalPrice: "NRS 200",
+            orderUrl: "https://docs.google.com/forms/d/e/1FAIpQLSfTphD-9ga14N4Lbln6pPpmBJzSQAGEXHl5ybI_IGTFLZcdPg/viewform?usp=header",
+            features: [
+                "Customizable delivery date up to 5 years into the future",
+                "Stored securely in acid-free archival envelopes",
+                "Digital backup stored in encrypted vault",
+                "Real handcrafted wax seal on envelope",
+                "Doorstep physical dispatch on your chosen date"
+            ]
+        }
+    };
+
+    const openProductDetailModal = (productKey) => {
+        const data = productDetailsData[productKey];
+        if (!data) return;
+
+        const modal = document.getElementById('modal-product-detail');
+        const titleEl = document.getElementById('detail-title');
+        const imgEl = document.getElementById('detail-img');
+        const curPriceEl = document.getElementById('detail-current-price');
+        const origPriceEl = document.getElementById('detail-original-price');
+        const featuresEl = document.getElementById('detail-features-list');
+        const orderBtn = document.getElementById('detail-order-btn');
+
+        if (titleEl) titleEl.textContent = data.title;
+        if (imgEl) {
+            imgEl.src = data.image;
+            imgEl.alt = data.title;
+        }
+        if (curPriceEl) curPriceEl.textContent = data.currentPrice;
+        if (origPriceEl) origPriceEl.textContent = data.originalPrice;
+        if (orderBtn) orderBtn.href = data.orderUrl;
+
+        if (featuresEl) {
+            featuresEl.innerHTML = data.features.map(f => `<li>${f}</li>`).join('');
+        }
+
+        if (modal) {
+            modal.classList.add('active');
+            document.body.classList.add('no-scroll');
+        }
+    };
+
+    // Trigger details modal on view-details-btn click
+    document.querySelectorAll('.view-details-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const productKey = btn.getAttribute('data-product');
+            openProductDetailModal(productKey);
+        });
+    });
+
+    // Trigger details modal exclusively for Future Letter card click (except order link)
+    document.querySelectorAll('.pricing-card[data-product="future"]').forEach(card => {
+        card.style.cursor = 'pointer';
+        card.addEventListener('click', (e) => {
+            if (e.target.closest('a.btn-primary')) return; // Allow direct order click
+            openProductDetailModal('future');
         });
     });
 

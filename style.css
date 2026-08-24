@@ -1499,6 +1499,170 @@ body.no-scroll {
   color: var(--accent);
 }
 
+/* Product Details Button on Pricing Cards */
+.view-details-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-family: var(--font-ui);
+  font-size: 0.85rem;
+  color: var(--gold);
+  background: rgba(201, 168, 76, 0.1);
+  border: 1px dashed rgba(201, 168, 76, 0.35);
+  padding: 6px 14px;
+  border-radius: 20px;
+  margin: 0 auto 18px auto;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: fit-content;
+}
+
+.view-details-btn:hover {
+  background: rgba(201, 168, 76, 0.22);
+  border-color: var(--gold);
+  transform: translateY(-2px);
+}
+
+/* Product Detail Modal Content */
+.product-modal-content {
+  max-width: 680px;
+  padding: 32px 28px;
+}
+
+.product-modal-header {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--glass-border);
+  margin-bottom: 24px;
+}
+
+.product-detail-img {
+  width: 90px;
+  height: 90px;
+  object-fit: cover;
+  border-radius: 12px;
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+.product-detail-title {
+  font-family: var(--font-display);
+  color: var(--gold);
+  font-size: 1.6rem;
+  margin: 0;
+}
+
+/* Fee Schedule Box inside Modal */
+.fee-schedule-box {
+  background: rgba(107, 18, 28, 0.18);
+  border: 1px solid rgba(201, 168, 76, 0.3);
+  border-radius: 14px;
+  padding: 20px 22px;
+  margin-bottom: 24px;
+}
+
+.fee-box-header {
+  margin-bottom: 14px;
+}
+
+.fee-box-title {
+  font-family: var(--font-display);
+  color: var(--gold);
+  font-size: 1.15rem;
+  margin-bottom: 4px;
+}
+
+.fee-box-badge {
+  font-family: var(--font-ui);
+  font-size: 0.82rem;
+  color: var(--rose);
+  font-style: italic;
+}
+
+.fee-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 14px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.fee-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 12px;
+  background: rgba(26, 26, 26, 0.4);
+  border-radius: 8px;
+  font-family: var(--font-ui);
+  font-size: 0.92rem;
+  color: var(--text);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.fee-time {
+  font-weight: 500;
+}
+
+.fee-amount {
+  font-weight: 700;
+  color: var(--gold);
+}
+
+.fee-amount.free {
+  color: #4CAF50;
+  background: rgba(76, 175, 80, 0.15);
+  padding: 2px 10px;
+  border-radius: 12px;
+  border: 1px solid rgba(76, 175, 80, 0.3);
+}
+
+.fee-amount small {
+  font-weight: normal;
+  color: var(--text-muted);
+  font-size: 0.75rem;
+}
+
+.fee-note {
+  font-family: var(--font-accent);
+  font-style: italic;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin: 0;
+  text-align: center;
+}
+
+/* Product Features Box inside Modal */
+.product-features-box {
+  margin-bottom: 24px;
+}
+
+.features-box-title {
+  font-family: var(--font-display);
+  color: var(--gold);
+  font-size: 1rem;
+  margin-bottom: 12px;
+}
+
+.product-modal-action {
+  text-align: center;
+  padding-top: 10px;
+}
+
+.modal-order-btn {
+  width: 100%;
+  padding: 14px;
+  font-size: 1.05rem;
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
 /* =========================================
    EFFECTS & MICRO-INTERACTIONS
    ========================================= */

@@ -158,17 +158,19 @@
                             <span class="current-price">NRS 120</span>
                             <span class="original-price">NRS 150</span>
                         </div>
+    
                         <ul class="pricing-features">
                             <li>Customizable delivery date within 1 month</li>
                             <li>FREE standard delivery within Nepal</li>
                             <li>Handcrafted envelope</li>
+                            <li>Wax seal to seal your envelope</li>
                         </ul>
                         <a href="https://docs.google.com/forms/d/e/1FAIpQLSeXE-XlCAJ-s8slrYO87vrnRtgQpvL1gcED_u5kqwUm52nQIg/viewform?usp=header" class="btn-primary" target="_blank" rel="noopener">Order Standard Letter ✦</a>
                     </div>
                 </div>
 
                 <!-- Future Letter — FEATURED -->
-                <div class="pricing-card featured tilt-card animate-on-scroll">
+                <div class="pricing-card featured tilt-card animate-on-scroll" data-product="future">
                     <span class="badge-popular">✦ Most Popular</span>
                     <div class="pricing-img">
                         <img src="images/letterfuture.png" alt="Future Letter — sealed with clock and hourglass" loading="lazy">
@@ -176,13 +178,15 @@
                     <div class="pricing-body">
                         <h3 class="pricing-title">Letter to Future</h3>
                         <div class="pricing-price-row">
-                            <span class="current-price">NRS 120</span>
-                            <span class="original-price">NRS 150</span>
+                            <span class="current-price">NRS 150</span>
+                            <span class="original-price">NRS 200</span>
                         </div>
+                        <button class="view-details-btn" data-product="future">View Delivery Fees & Details</button>
                         <ul class="pricing-features">
                             <li>Customizable delivery date up to 5 years into the future</li>
-                            <li>Stored securely</li>
-                            <li>Delivery fee: NPR 50 (within 1 yr) / NPR 250 (up to 5 yrs)</li>
+                            <li>Stored securely in acid-free envelopes</li>
+                            <li>Wax seal to seal your envelope</li>
+                            <li>Free delivery within 1 year of purchase</li>
                         </ul>
                         <a href="https://docs.google.com/forms/d/e/1FAIpQLSfTphD-9ga14N4Lbln6pPpmBJzSQAGEXHl5ybI_IGTFLZcdPg/viewform?usp=header" class="btn-primary" target="_blank" rel="noopener">Order Future Letter ✦</a>
                     </div>
@@ -256,7 +260,7 @@
                         <div class="step-number">V</div>
                         <div class="timeline-content">
                             <h3 class="step-title"> Delivered to You (or Stored for the Future)</h3>
-                            <p class="step-desc">Standard letters ship within the first month. Future letters are stored in acid-free envelopes with digital backup until your chosen date.</p>
+                            <p class="step-desc">Standard letters are delivered within the first month. Future letters are stored until your chosen date.</p>
                         </div>
                     </div>
 
@@ -600,7 +604,7 @@
                 <ul style="padding-left: 20px; margin-bottom: 15px;">
                     <li>Name, Address, Phone, Email</li>
                     <li>We <strong>DO NOT</strong> share your data with third parties</li>
-                    <li>We store future letters securely in acid-free envelopes + digital backup</li>
+                    <li>We store future letters securely</li>
                     <li>You can request deletion of your data at any time</li>
                 </ul>
 
@@ -634,6 +638,63 @@
 
                 <h3 style="font-family: var(--font-display); color: var(--gold); font-size: 1rem; margin: 25px 0 10px;">4. Prohibited Content</h3>
                 <p>Users are strictly prohibited from writing letters that contain threatening, defamatory, harassing, or illegal content. We reserve the right to flag and cancel any order that violates local laws of Nepal, without issuing a refund.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Product Detail Modal -->
+    <div class="modal" id="modal-product-detail">
+        <div class="modal-overlay"></div>
+        <div class="modal-content product-modal-content">
+            <button class="modal-close" aria-label="Close modal">✕</button>
+            <div class="product-modal-header">
+                <img id="detail-img" src="images/standardletter.png" alt="Product Image" class="product-detail-img">
+                <div class="product-detail-info">
+                    <h2 id="detail-title" class="product-detail-title">Letter Details</h2>
+                    <div class="pricing-price-row" style="margin: 8px 0 0 0;">
+                        <span id="detail-current-price" class="current-price">NRS 120</span>
+                        <span id="detail-original-price" class="original-price">NRS 150</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-modal-body">
+                <div class="fee-schedule-box">
+                    <div class="fee-box-header">
+                        <h3 class="fee-box-title">✦ Delivery Fees Schedule</h3>
+                        <span class="fee-box-badge">Option 1: Clean & Simple (Best for general users)</span>
+                    </div>
+                    <ul class="fee-list">
+                        <li>
+                            <span class="fee-time">Mailed within 1 year of purchase</span>
+                            <span class="fee-amount free">FREE</span>
+                        </li>
+                        <li>
+                            <span class="fee-time">After 1 year</span>
+                            <span class="fee-amount">NPR 50</span>
+                        </li>
+                        <li>
+                            <span class="fee-time">After 2 years</span>
+                            <span class="fee-amount">NPR 100</small></span>
+                        </li>
+                        <li>
+                            <span class="fee-time">After 4 years</span>
+                            <span class="fee-amount">NPR 200</small></span>
+                        </li>
+                    </ul>
+                    <p class="fee-note">(Fee is charged at the time of purchasing, based on when you want to send your letter.)</p>
+                </div>
+
+                <div class="product-features-box">
+                    <h4 class="features-box-title">What's Included:</h4>
+                    <ul id="detail-features-list" class="pricing-features">
+                        <!-- Populated dynamically via JS -->
+                    </ul>
+                </div>
+
+                <div class="product-modal-action">
+                    <a id="detail-order-btn" href="#" class="btn-primary modal-order-btn" target="_blank" rel="noopener">Order This Letter ✦</a>
+                </div>
             </div>
         </div>
     </div>
