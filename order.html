@@ -1,0 +1,1217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Chitthi — Place your order for a handcrafted, wax-sealed letter delivered across Nepal.">
+    <meta name="keywords" content="Chitthi, Nepal, order letter, handwritten letters, future letters, wax seal">
+    <meta name="author" content="Chitthi — Team Manka Kura">
+    <title>Order Your Letter — Chitthi</title>
+    <link rel="icon" type="image/png" href="images/icon.png">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* =========================================
+           ORDER PAGE SPECIFIC STYLES
+           ========================================= */
+        .order-page-section {
+            padding: 60px 0 100px;
+            min-height: calc(100vh - 200px);
+        }
+
+        .order-page-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .order-page-header .order-icon {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .order-page-header h1 {
+            font-family: var(--font-display);
+            font-size: 2.4rem;
+            color: var(--text);
+            margin-bottom: 12px;
+        }
+
+        .order-page-header p {
+            font-family: var(--font-accent);
+            font-style: italic;
+            font-size: 1.15rem;
+            color: var(--text-muted);
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .order-form-card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 48px 44px;
+            max-width: 720px;
+            margin: 0 auto;
+            box-shadow: 0 15px 45px var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .order-form-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent), var(--gold), var(--accent));
+        }
+
+        .form-section-title {
+            font-family: var(--font-display);
+            font-size: 1.1rem;
+            color: var(--gold);
+            margin: 32px 0 18px;
+            padding-bottom: 8px;
+            border-bottom: 1px dashed rgba(201, 168, 76, 0.25);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .form-section-title:first-of-type {
+            margin-top: 0;
+        }
+
+        .form-section-title .section-icon {
+            font-size: 1.1rem;
+        }
+
+        .order-form .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+        }
+
+        .order-form .form-group {
+            margin-bottom: 18px;
+        }
+
+        .order-form label {
+            font-family: var(--font-ui);
+            font-size: 0.88rem;
+            color: var(--text);
+            font-weight: 500;
+            margin-bottom: 6px;
+            display: block;
+        }
+
+        .order-form label .required {
+            color: var(--gold);
+            margin-left: 2px;
+        }
+
+        .order-form input,
+        .order-form select,
+        .order-form textarea {
+            width: 100%;
+            padding: 13px 16px;
+            background-color: var(--bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 10px;
+            color: var(--text);
+            font-family: var(--font-body);
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            box-sizing: border-box;
+        }
+
+        .order-form input:focus,
+        .order-form select:focus,
+        .order-form textarea:focus {
+            border-color: var(--gold);
+            box-shadow: 0 0 0 3px rgba(201, 168, 76, 0.12);
+        }
+
+        .order-form select {
+            appearance: none;
+            -webkit-appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23C5A059' stroke-width='2' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 14px center;
+            padding-right: 40px;
+            cursor: pointer;
+        }
+
+        .order-form select option {
+            background-color: var(--bg-card);
+            color: var(--text);
+        }
+
+        .order-form textarea {
+            resize: vertical;
+            min-height: 160px;
+            line-height: 1.7;
+        }
+
+        /* Letter Type Cards */
+        .letter-type-options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 8px;
+        }
+
+        .letter-type-option {
+            position: relative;
+        }
+
+        .letter-type-option input[type="radio"] {
+            position: absolute;
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .letter-type-label {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            padding: 22px 16px;
+            background-color: var(--bg);
+            border: 2px solid var(--glass-border);
+            border-radius: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .letter-type-label:hover {
+            border-color: rgba(201, 168, 76, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .letter-type-option input[type="radio"]:checked + .letter-type-label {
+            border-color: var(--gold);
+            background: rgba(201, 168, 76, 0.08);
+            box-shadow: 0 0 20px rgba(201, 168, 76, 0.15);
+        }
+
+        .letter-type-label img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .letter-type-label .type-name {
+            font-family: var(--font-display);
+            font-size: 0.95rem;
+            color: var(--gold);
+        }
+
+        .letter-type-label .type-price {
+            font-family: var(--font-ui);
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .letter-type-label .type-badge {
+            font-family: var(--font-ui);
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: #120A0B;
+            background-color: var(--gold);
+            padding: 2px 10px;
+            border-radius: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Payment QR Section */
+        .payment-options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-top: 10px;
+        }
+
+        .payment-card {
+            background-color: var(--bg);
+            border: 1px dashed var(--gold);
+            border-radius: 12px;
+            padding: 18px;
+            text-align: center;
+        }
+
+        .payment-card p.payment-title {
+            font-family: var(--font-ui);
+            font-size: 0.85rem;
+            color: var(--gold);
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .payment-card .qr-img-wrap {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto;
+            background: var(--cream);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            padding: 4px;
+        }
+
+        .payment-card .qr-img-wrap img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        /* Submit Button */
+        .order-submit-btn {
+            width: 100%;
+            padding: 16px;
+            margin-top: 30px;
+            font-size: 1.1rem;
+            border-radius: 10px;
+            font-family: var(--font-ui);
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+        }
+
+        /* Back link */
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-family: var(--font-ui);
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 30px;
+            transition: color 0.3s ease;
+        }
+        .back-link:hover {
+            color: var(--gold);
+        }
+
+        /* Character surcharge notice */
+        .char-surcharge {
+            font-family: var(--font-ui);
+            font-size: 0.8rem;
+            color: var(--gold);
+            margin-top: 4px;
+            display: none;
+        }
+        .char-surcharge.visible {
+            display: block;
+        }
+
+        /* Date validation message */
+        .date-hint {
+            font-family: var(--font-ui);
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+        .date-error {
+            font-family: var(--font-ui);
+            font-size: 0.8rem;
+            color: #ef5350;
+            margin-top: 4px;
+            display: none;
+        }
+        .date-error.visible {
+            display: block;
+        }
+
+        /* Live price calculator */
+        .price-calculator {
+            background: rgba(107, 18, 28, 0.18);
+            border: 1px solid rgba(201, 168, 76, 0.3);
+            border-radius: 14px;
+            padding: 22px 24px;
+            margin-top: 28px;
+            margin-bottom: 8px;
+        }
+
+        .price-calc-title {
+            font-family: var(--font-display);
+            font-size: 1.05rem;
+            color: var(--gold);
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .price-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 7px 0;
+            font-family: var(--font-ui);
+            font-size: 0.9rem;
+            color: var(--text);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .price-row:last-of-type {
+            border-bottom: none;
+        }
+
+        .price-row .price-label {
+            color: var(--text-muted);
+        }
+
+        .price-row .price-value {
+            font-weight: 600;
+            color: var(--text);
+        }
+        .price-row .price-value.free {
+            color: #4CAF50;
+        }
+        .price-row .price-value.fee {
+            color: var(--gold);
+        }
+
+        .price-row.hidden-row {
+            display: none;
+        }
+
+        .price-total-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0 0;
+            margin-top: 8px;
+            border-top: 2px solid rgba(201, 168, 76, 0.3);
+            font-family: var(--font-display);
+            font-size: 1.2rem;
+            color: var(--gold);
+        }
+
+        .price-total-row .total-amount {
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+
+        /* Delivery fee schedule (compact) */
+        .delivery-fee-info {
+            font-family: var(--font-accent);
+            font-style: italic;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-top: 8px;
+            padding: 10px 14px;
+            background: rgba(26, 26, 26, 0.3);
+            border-radius: 8px;
+            border-left: 3px solid var(--gold);
+            display: none;
+        }
+        .delivery-fee-info.visible {
+            display: block;
+        }
+
+        /* Character counter */
+        .char-counter {
+            font-family: var(--font-ui);
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            text-align: right;
+            margin-top: 4px;
+        }
+        .char-counter.over-limit {
+            color: #ef5350;
+        }
+
+        /* Success overlay */
+        .order-success-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 2000;
+            background: rgba(0,0,0,0.85);
+            align-items: center;
+            justify-content: center;
+        }
+        .order-success-overlay.active {
+            display: flex;
+        }
+        .order-success-card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--gold);
+            border-radius: 20px;
+            padding: 50px 40px;
+            max-width: 480px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(201, 168, 76, 0.2);
+        }
+        .order-success-card .success-icon {
+            font-size: 3rem;
+            margin-bottom: 16px;
+            display: block;
+        }
+        .order-success-card h2 {
+            font-family: var(--font-display);
+            color: var(--gold);
+            font-size: 1.6rem;
+            margin-bottom: 12px;
+        }
+        .order-success-card p {
+            font-family: var(--font-accent);
+            font-style: italic;
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            margin-bottom: 28px;
+            line-height: 1.6;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .order-form-card {
+                padding: 32px 20px;
+                border-radius: 16px;
+            }
+            .order-form .form-row {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+            .letter-type-options {
+                grid-template-columns: 1fr 1fr;
+                gap: 12px;
+            }
+            .payment-options {
+                grid-template-columns: 1fr 1fr;
+                gap: 12px;
+            }
+            .order-page-header h1 {
+                font-size: 1.8rem;
+            }
+            .price-calculator {
+                padding: 18px 16px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .order-form-card {
+                padding: 24px 16px;
+            }
+            .letter-type-options {
+                grid-template-columns: 1fr;
+            }
+            .payment-options {
+                grid-template-columns: 1fr;
+            }
+            .order-page-header h1 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body data-theme="dark">
+
+    <!-- ========================================
+         ANNOUNCEMENT BAR
+         ======================================== -->
+    <div class="announcement-bar">
+        <div class="delivery-banner">
+             <span>✦ &nbsp; 100% Free Delivery Within Nepal &nbsp; ✦</span>
+            <button class="theme-toggle" aria-label="Toggle theme" style="color: var(--gold);">✦Dark Theme</button>
+        </div>
+    </div>
+
+    <!-- ========================================
+         NAVIGATION BAR
+         ======================================== -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <a href="index.html#home" class="nav-logo">
+                <img src="images/logo.png" alt="Chitthi Logo" class="logo-img" style="height: 120px; transform: translateY(10px);">
+                <span>Chitthi</span>
+            </a>
+
+            <ul class="nav-links">
+                <li><a href="index.html#home" class="nav-link"> Home</a></li>
+                <li><a href="index.html#letters" class="nav-link"> Letters</a></li>
+                <li><a href="index.html#how-it-works" class="nav-link"> How It Works</a></li>
+                <li><a href="index.html#our-story" class="nav-link"> Our Story</a></li>
+                <li><a href="index.html#faq" class="nav-link"> FAQ</a></li>
+                <li><a href="index.html#contact" class="nav-link"> Contact</a></li>
+            </ul>
+
+            <button class="hamburger" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu">
+        <a href="index.html#home" class="nav-link"> Home</a>
+        <a href="index.html#letters" class="nav-link"> Letters</a>
+        <a href="index.html#how-it-works" class="nav-link"> How It Works</a>
+        <a href="index.html#our-story" class="nav-link"> Our Story</a>
+        <a href="index.html#faq" class="nav-link"> FAQ</a>
+        <a href="index.html#contact" class="nav-link"> Contact</a>
+    </div>
+
+    <!-- ========================================
+         ORDER FORM SECTION
+         ======================================== -->
+    <section class="order-page-section section">
+        <div class="container">
+            <a href="index.html" class="back-link">← Back to Home</a>
+
+            <div class="order-page-header animate-on-scroll">
+                <span class="order-icon">✦</span>
+                <h1>Place Your Order</h1>
+                <p>Write your heart out. We'll make sure it reaches the right hands, at the right time.</p>
+            </div>
+
+            <div class="order-form-card animate-on-scroll">
+                <form class="order-form" id="order-form" action="https://formspree.io/f/pratikshya002bahing@gmail.com" method="POST">
+                    <!-- Hidden field for form identification -->
+                    <input type="hidden" name="_subject" value="✦ New Chitthi Order Received!">
+                    <input type="hidden" name="_template" value="table">
+
+                    <!-- LETTER TYPE -->
+                    <h3 class="form-section-title"><span class="section-icon">✉</span> Choose Your Letter</h3>
+                    <div class="letter-type-options">
+                        <div class="letter-type-option">
+                            <input type="radio" id="type-standard" name="Letter Type" value="Standard Letter — NRS 120" required>
+                            <label for="type-standard" class="letter-type-label">
+                                <img src="images/standardletter.png" alt="Standard Letter">
+                                <span class="type-name">Standard Letter</span>
+                                <span class="type-price">NRS 120</span>
+                            </label>
+                        </div>
+                        <div class="letter-type-option">
+                            <input type="radio" id="type-future" name="Letter Type" value="Future Letter — NRS 150">
+                            <label for="type-future" class="letter-type-label">
+                                <img src="images/letterfuture.png" alt="Future Letter">
+                                <span class="type-name">Future Letter</span>
+                                <span class="type-price">NRS 150</span>
+                                <span class="type-badge">✦ Most Popular</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- SENDER DETAILS -->
+                    <h3 class="form-section-title"><span class="section-icon">👤</span> Your Details (Sender)</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="sender-name">Full Name <span class="required">*</span></label>
+                            <input type="text" id="sender-name" name="Sender Name" placeholder="Your full name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="sender-phone">Phone Number <span class="required">*</span></label>
+                            <input type="tel" id="sender-phone" name="Sender Phone" placeholder="+977-98XXXXXXXX" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="sender-email">Email Address <span class="required">*</span></label>
+                        <input type="email" id="sender-email" name="Sender Email" placeholder="your@email.com" required>
+                    </div>
+
+                    <!-- RECIPIENT DETAILS -->
+                    <h3 class="form-section-title"><span class="section-icon">📬</span> Recipient Details</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="recipient-name">Recipient's Full Name <span class="required">*</span></label>
+                            <input type="text" id="recipient-name" name="Recipient Name" placeholder="Recipient's name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="recipient-phone">Recipient's Phone</label>
+                            <input type="tel" id="recipient-phone" name="Recipient Phone" placeholder="+977-98XXXXXXXX">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="recipient-address">Delivery Address <span class="required">*</span></label>
+                        <input type="text" id="recipient-address" name="Recipient Address" placeholder="Full address (street, area, landmark)" required>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="recipient-city">City / District <span class="required">*</span></label>
+                            <input type="text" id="recipient-city" name="Recipient City" placeholder="e.g. Kathmandu" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="delivery-date">Preferred Delivery Date <span class="required">*</span></label>
+                            <input type="date" id="delivery-date" name="Delivery Date" required>
+                            <div class="date-hint" id="date-hint">Standard: within 1 month · Future: up to 5 years</div>
+                            <div class="date-error" id="date-error"></div>
+                        </div>
+                    </div>
+
+                    <!-- Hidden fields for computed pricing sent with form -->
+                    <input type="hidden" id="hidden-total" name="Estimated Total (NPR)" value="—">
+                    <input type="hidden" id="hidden-delivery-fee" name="Delivery Fee (NPR)" value="—">
+
+                    <!-- YOUR MESSAGE -->
+                    <h3 class="form-section-title"><span class="section-icon">✍</span> Your Letter</h3>
+                    <div class="form-group">
+                        <label for="letter-message">Write your message below <span class="required">*</span></label>
+                        <textarea id="letter-message" name="Letter Message" placeholder="Dear future me... / Dear [name]..." maxlength="4000" required></textarea>
+                        <div class="char-counter"><span id="char-count">0</span> / 4,000 characters <span style="color: var(--text-muted); font-size: 0.72rem;">(first 1,600 included free)</span></div>
+                        <div class="char-surcharge" id="char-surcharge">✦ You've exceeded 1,600 characters — an extra NPR 20 surcharge applies.</div>
+                    </div>
+
+                    <!-- PAYMENT -->
+                    <h3 class="form-section-title"><span class="section-icon">💳</span> Payment</h3>
+                    <p style="font-family: var(--font-accent); font-style: italic; color: var(--text-muted); font-size: 0.95rem; margin-bottom: 14px;">
+                        Scan one of the QR codes below to complete your payment, then select which method you used.
+                    </p>
+                    <div class="payment-options">
+                        <div class="payment-card">
+                            <p class="payment-title">eSewa QR Code</p>
+                            <div class="qr-img-wrap">
+                                <img src="images/esewa.jpg" alt="eSewa QR Code">
+                            </div>
+                        </div>
+                        <div class="payment-card">
+                            <p class="payment-title">Khalti QR Code</p>
+                            <div class="qr-img-wrap">
+                                <img src="images/khalti.jpg" alt="Khalti QR Code">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group" style="margin-top: 18px;">
+                        <label for="payment-method">Payment Method Used <span class="required">*</span></label>
+                        <select id="payment-method" name="Payment Method" required>
+                            <option value="" disabled selected>— Select payment method —</option>
+                            <option value="eSewa">eSewa</option>
+                            <option value="Khalti">Khalti</option>
+                            <option value="Bank Transfer">Bank Transfer</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="transaction-id">Transaction ID / Screenshot Reference</label>
+                        <input type="text" id="transaction-id" name="Transaction ID" placeholder="e.g. TXN123456 or 'screenshot sent via WhatsApp'">
+                    </div>
+
+                    <!-- LIVE PRICE CALCULATOR -->
+                    <div class="price-calculator" id="price-calculator">
+                        <div class="price-calc-title">✦ Order Summary</div>
+                        <div class="price-row" id="row-base">
+                            <span class="price-label" id="label-base">Letter base price</span>
+                            <span class="price-value" id="val-base">—</span>
+                        </div>
+                        <div class="price-row hidden-row" id="row-char-fee">
+                            <span class="price-label">Character surcharge (&gt;1,600 chars)</span>
+                            <span class="price-value fee" id="val-char-fee">NPR 20</span>
+                        </div>
+                        <div class="price-row hidden-row" id="row-delivery-fee">
+                            <span class="price-label" id="label-delivery-fee">Delivery fee</span>
+                            <span class="price-value" id="val-delivery-fee">FREE</span>
+                        </div>
+                        <div class="delivery-fee-info" id="delivery-fee-info">
+                            Future letter delivery fees: Free within 1 year · NPR 50 after 1 year · NPR 100 after 2 years · NPR 200 after 4 years.
+                        </div>
+                        <div class="price-total-row">
+                            <span>Total</span>
+                            <span class="total-amount" id="val-total">—</span>
+                        </div>
+                    </div>
+
+                    <!-- SUBMIT -->
+                    <button type="submit" class="btn-primary order-submit-btn">✦ Submit Your Order</button>
+                    <div class="form-msg" id="order-form-msg"></div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================
+         FOOTER
+         ======================================== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <!-- Brand Section -->
+                <div class="footer-brand">
+                    <a href="index.html#home" class="footer-logo">
+                        <img src="images/logo.png" alt="Chitthi Logo" class="footer-logo-img">
+                        <span class="footer-logo-title">Chitthi</span>
+                    </a>
+                    <p class="footer-tagline">
+                        Nepal's first future letter platform. Preserving emotions and delivering them exactly when they matter most. Letters that travel through time.
+                    </p>
+                </div>
+
+                <!-- Navigation & Legal Links -->
+                <div class="footer-nav-grid">
+                    <div class="footer-links-group">
+                        <h4>Quick Links</h4>
+                        <div class="footer-links-row">
+                            <a href="index.html#home">Home</a>
+                            <a href="index.html#letters">Letters</a>
+                            <a href="index.html#how-it-works">How It Works</a>
+                            <a href="index.html#our-story">Our Story</a>
+                            <a href="index.html#faq">FAQ</a>
+                            <a href="index.html#contact">Contact</a>
+                        </div>
+                    </div>
+
+                    <div class="footer-links-group">
+                        <h4>Legal</h4>
+                        <div class="footer-links-row">
+                            <a href="index.html#" data-modal="privacy">Privacy Policy</a>
+                            <a href="index.html#" data-modal="terms">Terms of Service</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Social Platforms Section -->
+                <div class="footer-social-section">
+                    <h4>Follow Us</h4>
+                    <div class="footer-social-icons">
+                        <a href="https://instagram.com/chitthi.np" target="_blank" rel="noopener" aria-label="Instagram" class="social-icon-btn">
+                            <img src="images/instagram.png" alt="Instagram">
+                        </a>
+                        <a href="https://tiktok.com/@chitthi.np" target="_blank" rel="noopener" aria-label="TikTok" class="social-icon-btn">
+                            <img src="images/tiktok.png" alt="TikTok">
+                        </a>
+                        <a href="https://wa.me/9779769031951" target="_blank" rel="noopener" aria-label="WhatsApp" class="social-icon-btn">
+                            <img src="images/whatsapp.png" alt="WhatsApp">
+                        </a>
+                        <a href="mailto:npchitthil@gmail.com" aria-label="Email" class="social-icon-btn">
+                            <img src="images/email.png" alt="Email">
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer Bottom Copyright -->
+            <div class="footer-bottom">
+                <p>© 2026 Chitthi. All rights reserved. Made with ♥ in Nepal.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ========================================
+         SUCCESS OVERLAY
+         ======================================== -->
+    <div class="order-success-overlay" id="order-success">
+        <div class="order-success-card">
+            <span class="success-icon">✦</span>
+            <h2>Order Received!</h2>
+            <p>Thank you for choosing Chitthi. We'll begin preparing your letter with care. You'll receive a WhatsApp confirmation shortly.</p>
+            <a href="index.html" class="btn-primary" style="border-radius: 10px; padding: 14px 32px;">← Back to Home</a>
+        </div>
+    </div>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // ============================================
+        // THEME TOGGLE
+        // ============================================
+        const toggleBtn = document.querySelector('.theme-toggle');
+        if (toggleBtn) {
+            const currentTheme = localStorage.getItem('chitthi-theme') || 'dark';
+            document.body.setAttribute('data-theme', currentTheme);
+            toggleBtn.innerHTML = currentTheme === 'dark' ? '✦Dark Theme' : '✦Light Theme';
+
+            toggleBtn.addEventListener('click', () => {
+                const isDark = document.body.getAttribute('data-theme') === 'dark';
+                const newTheme = isDark ? 'light' : 'dark';
+                document.body.setAttribute('data-theme', newTheme);
+                localStorage.setItem('chitthi-theme', newTheme);
+                toggleBtn.innerHTML = newTheme === 'dark' ? '✦Dark Theme' : '✦Light Theme';
+            });
+        }
+
+        // ============================================
+        // HAMBURGER MENU
+        // ============================================
+        const hamburger = document.querySelector('.hamburger');
+        const mobileMenu = document.querySelector('.mobile-menu');
+
+        if (hamburger) {
+            hamburger.addEventListener('click', () => {
+                hamburger.classList.toggle('active');
+                mobileMenu.classList.toggle('active');
+                document.body.classList.toggle('no-scroll');
+            });
+        }
+
+        if (mobileMenu) {
+            mobileMenu.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', () => {
+                    hamburger.classList.remove('active');
+                    mobileMenu.classList.remove('active');
+                    document.body.classList.remove('no-scroll');
+                });
+            });
+        }
+
+        // ============================================
+        // SCROLL ANIMATIONS
+        // ============================================
+        const observer = new IntersectionObserver((entries, obs) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    obs.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.15 });
+
+        document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
+
+        // ============================================
+        // ANNOUNCEMENT BAR
+        // ============================================
+        const announcementBar = document.querySelector('.announcement-bar');
+        window.addEventListener('scroll', () => {
+            if (announcementBar) {
+                if (window.scrollY > 80) {
+                    announcementBar.classList.add('hidden');
+                } else {
+                    announcementBar.classList.remove('hidden');
+                }
+            }
+        }, { passive: true });
+
+        // ============================================
+        // DOM REFERENCES
+        // ============================================
+        const radioStandard = document.getElementById('type-standard');
+        const radioFuture = document.getElementById('type-future');
+        const deliveryDateInput = document.getElementById('delivery-date');
+        const dateHint = document.getElementById('date-hint');
+        const dateError = document.getElementById('date-error');
+        const messageArea = document.getElementById('letter-message');
+        const charCountEl = document.getElementById('char-count');
+        const charCounter = document.querySelector('.char-counter');
+        const charSurcharge = document.getElementById('char-surcharge');
+
+        // Price calculator elements
+        const labelBase = document.getElementById('label-base');
+        const valBase = document.getElementById('val-base');
+        const rowCharFee = document.getElementById('row-char-fee');
+        const rowDeliveryFee = document.getElementById('row-delivery-fee');
+        const labelDeliveryFee = document.getElementById('label-delivery-fee');
+        const valDeliveryFee = document.getElementById('val-delivery-fee');
+        const deliveryFeeInfo = document.getElementById('delivery-fee-info');
+        const valTotal = document.getElementById('val-total');
+        const hiddenTotal = document.getElementById('hidden-total');
+        const hiddenDeliveryFee = document.getElementById('hidden-delivery-fee');
+
+        // ============================================
+        // HELPER: Format date as YYYY-MM-DD
+        // ============================================
+        const toDateStr = (date) => date.toISOString().split('T')[0];
+
+        // ============================================
+        // HELPER: Get selected letter type
+        // ============================================
+        const getSelectedType = () => {
+            if (radioStandard && radioStandard.checked) return 'standard';
+            if (radioFuture && radioFuture.checked) return 'future';
+            return null;
+        };
+
+        // ============================================
+        // DATE LIMITS
+        // Standard: tomorrow to 1 month from today
+        // Future: tomorrow to 5 years from today
+        // ============================================
+        const now = new Date();
+        const tomorrow = new Date(now);
+        tomorrow.setDate(tomorrow.getDate() + 1);
+
+        const oneMonthLater = new Date(now);
+        oneMonthLater.setMonth(oneMonthLater.getMonth() + 1);
+
+        const fiveYearsLater = new Date(now);
+        fiveYearsLater.setFullYear(fiveYearsLater.getFullYear() + 5);
+
+        const updateDateLimits = () => {
+            if (!deliveryDateInput) return;
+            const type = getSelectedType();
+
+            deliveryDateInput.min = toDateStr(tomorrow);
+
+            if (type === 'standard') {
+                deliveryDateInput.max = toDateStr(oneMonthLater);
+                dateHint.textContent = 'Standard letter: delivery within 1 month from today.';
+            } else if (type === 'future') {
+                deliveryDateInput.max = toDateStr(fiveYearsLater);
+                dateHint.textContent = 'Future letter: delivery up to 5 years from today.';
+            } else {
+                deliveryDateInput.max = toDateStr(fiveYearsLater);
+                dateHint.textContent = 'Standard: within 1 month · Future: up to 5 years';
+            }
+
+            // Validate current value if set
+            validateDate();
+        };
+
+        const validateDate = () => {
+            if (!deliveryDateInput || !deliveryDateInput.value) {
+                dateError.classList.remove('visible');
+                return true;
+            }
+
+            const selected = new Date(deliveryDateInput.value + 'T00:00:00');
+            const type = getSelectedType();
+            let valid = true;
+            let errorMsg = '';
+
+            if (selected < tomorrow) {
+                errorMsg = 'Delivery date must be in the future.';
+                valid = false;
+            } else if (type === 'standard' && selected > oneMonthLater) {
+                errorMsg = 'Standard letter delivery must be within 1 month from today. Choose a Future Letter for later dates.';
+                valid = false;
+            } else if (type === 'future' && selected > fiveYearsLater) {
+                errorMsg = 'Future letter delivery cannot exceed 5 years from today.';
+                valid = false;
+            }
+
+            if (!valid) {
+                dateError.textContent = errorMsg;
+                dateError.classList.add('visible');
+            } else {
+                dateError.classList.remove('visible');
+            }
+
+            return valid;
+        };
+
+        // ============================================
+        // DELIVERY FEE FOR FUTURE LETTERS
+        // Free within 1 year, NPR 50 after 1 year,
+        // NPR 100 after 2 years, NPR 200 after 4 years
+        // ============================================
+        const calcDeliveryFee = () => {
+            const type = getSelectedType();
+            if (type !== 'future' || !deliveryDateInput || !deliveryDateInput.value) {
+                return 0;
+            }
+
+            const selected = new Date(deliveryDateInput.value + 'T00:00:00');
+            const diffMs = selected - now;
+            const diffYears = diffMs / (1000 * 60 * 60 * 24 * 365.25);
+
+            if (diffYears <= 1) return 0;
+            if (diffYears <= 2) return 50;
+            if (diffYears <= 4) return 100;
+            return 200;
+        };
+
+        // ============================================
+        // CHARACTER COUNTER + SURCHARGE
+        // 1,600 chars free · NPR 20 surcharge >1,600
+        // Max 4,000 chars
+        // ============================================
+        const updateCharCounter = () => {
+            if (!messageArea || !charCountEl) return;
+
+            const len = messageArea.value.length;
+            charCountEl.textContent = len.toLocaleString();
+
+            if (len > 1600) {
+                charCounter.classList.add('over-limit');
+                charSurcharge.classList.add('visible');
+            } else {
+                charCounter.classList.remove('over-limit');
+                charSurcharge.classList.remove('visible');
+            }
+
+            updatePriceCalculator();
+        };
+
+        // ============================================
+        // LIVE PRICE CALCULATOR
+        // ============================================
+        const updatePriceCalculator = () => {
+            const type = getSelectedType();
+            let basePrice = 0;
+            let charFee = 0;
+            let deliveryFee = 0;
+
+            // Base price
+            if (type === 'standard') {
+                basePrice = 120;
+                labelBase.textContent = 'Standard Letter';
+                valBase.textContent = 'NPR 120';
+            } else if (type === 'future') {
+                basePrice = 150;
+                labelBase.textContent = 'Future Letter';
+                valBase.textContent = 'NPR 150';
+            } else {
+                labelBase.textContent = 'Letter base price';
+                valBase.textContent = '—';
+                rowCharFee.classList.add('hidden-row');
+                rowDeliveryFee.classList.add('hidden-row');
+                deliveryFeeInfo.classList.remove('visible');
+                valTotal.textContent = '—';
+                hiddenTotal.value = '—';
+                hiddenDeliveryFee.value = '—';
+                return;
+            }
+
+            // Character surcharge
+            if (messageArea && messageArea.value.length > 1600) {
+                charFee = 20;
+                rowCharFee.classList.remove('hidden-row');
+            } else {
+                rowCharFee.classList.add('hidden-row');
+            }
+
+            // Delivery fee (Future letters only)
+            if (type === 'future') {
+                deliveryFee = calcDeliveryFee();
+                rowDeliveryFee.classList.remove('hidden-row');
+                deliveryFeeInfo.classList.add('visible');
+
+                if (deliveryFee === 0) {
+                    valDeliveryFee.textContent = 'FREE';
+                    valDeliveryFee.className = 'price-value free';
+                    if (deliveryDateInput && deliveryDateInput.value) {
+                        labelDeliveryFee.textContent = 'Delivery fee (within 1 year)';
+                    } else {
+                        labelDeliveryFee.textContent = 'Delivery fee';
+                    }
+                } else {
+                    valDeliveryFee.textContent = 'NPR ' + deliveryFee;
+                    valDeliveryFee.className = 'price-value fee';
+                    const selected = new Date(deliveryDateInput.value + 'T00:00:00');
+                    const diffYears = (selected - now) / (1000 * 60 * 60 * 24 * 365.25);
+                    if (diffYears <= 2) {
+                        labelDeliveryFee.textContent = 'Delivery fee (1–2 years)';
+                    } else if (diffYears <= 4) {
+                        labelDeliveryFee.textContent = 'Delivery fee (2–4 years)';
+                    } else {
+                        labelDeliveryFee.textContent = 'Delivery fee (4–5 years)';
+                    }
+                }
+            } else {
+                rowDeliveryFee.classList.add('hidden-row');
+                deliveryFeeInfo.classList.remove('visible');
+            }
+
+            // Total
+            const total = basePrice + charFee + deliveryFee;
+            valTotal.textContent = 'NPR ' + total;
+            hiddenTotal.value = total;
+            hiddenDeliveryFee.value = deliveryFee > 0 ? deliveryFee : 'Free';
+        };
+
+        // ============================================
+        // PRE-SELECT LETTER TYPE FROM URL PARAMS
+        // ============================================
+        const urlParams = new URLSearchParams(window.location.search);
+        const letterType = urlParams.get('type');
+        if (letterType === 'standard' && radioStandard) {
+            radioStandard.checked = true;
+        } else if (letterType === 'future' && radioFuture) {
+            radioFuture.checked = true;
+        }
+
+        // ============================================
+        // EVENT LISTENERS
+        // ============================================
+
+        // Letter type change → update date limits + price
+        if (radioStandard) {
+            radioStandard.addEventListener('change', () => {
+                updateDateLimits();
+                updatePriceCalculator();
+            });
+        }
+        if (radioFuture) {
+            radioFuture.addEventListener('change', () => {
+                updateDateLimits();
+                updatePriceCalculator();
+            });
+        }
+
+        // Date change → validate + update price
+        if (deliveryDateInput) {
+            deliveryDateInput.addEventListener('change', () => {
+                validateDate();
+                updatePriceCalculator();
+            });
+        }
+
+        // Message typing → char counter + price
+        if (messageArea) {
+            messageArea.addEventListener('input', updateCharCounter);
+        }
+
+        // Run initial state
+        updateDateLimits();
+        updatePriceCalculator();
+
+        // ============================================
+        // FORM SUBMISSION
+        // ============================================
+        const orderForm = document.getElementById('order-form');
+        const msgDiv = document.getElementById('order-form-msg');
+
+        if (orderForm) {
+            orderForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+
+                // Validate date before submitting
+                if (!validateDate()) {
+                    msgDiv.textContent = 'Please fix the delivery date before submitting.';
+                    msgDiv.className = 'form-msg error';
+                    return;
+                }
+
+                const submitBtn = orderForm.querySelector('.order-submit-btn');
+                const originalText = submitBtn.textContent;
+                submitBtn.textContent = 'Sending your order...';
+                submitBtn.disabled = true;
+                msgDiv.textContent = '';
+                msgDiv.className = 'form-msg';
+
+                try {
+                    const formData = new FormData(orderForm);
+                    const response = await fetch(orderForm.action, {
+                        method: 'POST',
+                        body: formData,
+                        headers: { 'Accept': 'application/json' }
+                    });
+
+                    if (response.ok) {
+                        orderForm.reset();
+                        // Show success overlay
+                        const successOverlay = document.getElementById('order-success');
+                        if (successOverlay) {
+                            successOverlay.classList.add('active');
+                            document.body.classList.add('no-scroll');
+                        }
+                    } else {
+                        const data = await response.json();
+                        if (data && data.errors) {
+                            msgDiv.textContent = data.errors.map(err => err.message).join(', ');
+                        } else {
+                            msgDiv.textContent = 'Oops! There was a problem submitting your order. Please try again or contact us on WhatsApp.';
+                        }
+                        msgDiv.classList.add('error');
+                    }
+                } catch (error) {
+                    msgDiv.textContent = 'Network error. Please check your connection and try again.';
+                    msgDiv.classList.add('error');
+                } finally {
+                    submitBtn.textContent = originalText;
+                    submitBtn.disabled = false;
+                }
+            });
+        }
+    });
+    </script>
+</body>
+</html>
