@@ -689,7 +689,6 @@
                                             <div class="letter-type-info">
                                                 <span class="type-name">Future Letter</span>
                                                 <span class="type-price">NRS 150</span>
-                                                <span class="type-badge">✦ Most Popular</span>
                                             </div>
                                         </label>
                                     </div>
@@ -746,27 +745,27 @@
                                     <div id="bs-date-picker" style="display: none; gap: 8px; margin-top: 8px;">
                                         <select id="bs-year" style="flex: 1; min-width: 0;" aria-label="BS Year">
                                             <option value="" disabled selected>Year</option>
-                                            <option value="2081">2081</option>
-                                            <option value="2082">2082</option>
                                             <option value="2083">2083</option>
                                             <option value="2084">2084</option>
                                             <option value="2085">2085</option>
                                             <option value="2086">2086</option>
+                                            <option value="2087">2087</option>
+                                            <option value="2088">2088</option>
                                         </select>
                                         <select id="bs-month" style="flex: 1; min-width: 0;" aria-label="BS Month">
                                             <option value="" disabled selected>Month</option>
-                                            <option value="01">Baisakh (1)</option>
-                                            <option value="02">Jestha (2)</option>
-                                            <option value="03">Ashadh (3)</option>
-                                            <option value="04">Shrawan (4)</option>
-                                            <option value="05">Bhadra (5)</option>
-                                            <option value="06">Ashoj (6)</option>
-                                            <option value="07">Kartik (7)</option>
-                                            <option value="08">Mangsir (8)</option>
-                                            <option value="09">Poush (9)</option>
-                                            <option value="10">Magh (10)</option>
-                                            <option value="11">Falgun (11)</option>
-                                            <option value="12">Chaitra (12)</option>
+                                            <option value="01">Baisakh</option>
+                                            <option value="02">Jestha</option>
+                                            <option value="03">Ashadh</option>
+                                            <option value="04">Shrawan</option>
+                                            <option value="05">Bhadra</option>
+                                            <option value="06">Ashoj</option>
+                                            <option value="07">Kartik</option>
+                                            <option value="08">Mangsir</option>
+                                            <option value="09">Poush</option>
+                                            <option value="10">Magh</option>
+                                            <option value="11">Falgun</option>
+                                            <option value="12">Chaitra</option>
                                         </select>
                                         <select id="bs-day" style="flex: 1; min-width: 0;" aria-label="BS Day">
                                             <option value="" disabled selected>Day</option>
@@ -794,8 +793,8 @@
                         <div class="accordion-content">
                             <div class="form-group">
                                 <label for="letter-message">Write your message below <span class="required">*</span></label>
-                                <textarea id="letter-message" name="Letter Message" placeholder="Dear future me... / Dear [name]..." maxlength="4000" required></textarea>
-                                <div class="char-counter"><span id="char-count">0</span> / 4,000 characters <span id="char-limit-text" style="color: var(--text-muted); font-size: 0.72rem;">(first 1,600 included free)</span></div>
+                                <textarea id="letter-message" name="Letter Message" placeholder="Dear future me... / Dear [name]..." maxlength="3200" required></textarea>
+                                <div class="char-counter"><span id="char-count">0</span> / 3,200 characters <span id="char-limit-text" style="color: var(--text-muted); font-size: 0.72rem;">(first 1,600 included free)</span></div>
                                 <div class="char-surcharge" id="char-surcharge">✦ You've exceeded 1,600 characters — an extra NPR 20 surcharge applies.</div>
                             </div>
                             <div class="form-group" style="margin-top: 14px;">
@@ -812,12 +811,13 @@
                         <summary><div class="accordion-title-left">4. A Little Gift</div></summary>
                         <div class="accordion-content">
                             <p style="font-family: var(--font-accent); font-style: italic; color: var(--text-muted); font-size: 0.95rem; margin-bottom: 14px;">
-                                Add a special touch to your letter. You can select one, or as many as you like!
+                               Collaboration with Handmade Magic: Add a special touch to your letter. You can select one, or as many as you like!
                             </p>
                             <div class="gift-options" style="display: flex; flex-direction: column; gap: 10px;">
                                 <label style="display: flex; justify-content: space-between; align-items: center; padding: 12px; border: 1px solid var(--glass-border); border-radius: 8px; cursor: pointer; background: var(--bg);">
                                     <div style="display: flex; align-items: center; gap: 10px;">
-                                        <input type="checkbox" name="Gifts[]" value="Crochet Lavender Bouquet" data-price="300" class="gift-checkbox" style="width: 18px; height: 18px; accent-color: var(--gold);">
+                                        <input type="checkbox" name="Gifts[]" value="Lavender Crochet" data-price="300" class="gift-checkbox" style="width: 18px; height: 18px; accent-color: var(--gold);">
+                                        <img src="images/handmade_magic/lavender.jpg" alt="Lavender Crochet" style="width: 40px; height: 40px; object-fit: cover; border-radius: 6px;">
                                         <span style="color: var(--gold); font-size: 0.95rem;">Lavender Crochet</span>
                                     </div>
                                     <span style="font-size: 0.9rem; color: var(--text-muted);">+ NPR 300</span>
@@ -825,6 +825,7 @@
                                 <label style="display: flex; justify-content: space-between; align-items: center; padding: 12px; border: 1px solid var(--glass-border); border-radius: 8px; cursor: pointer; background: var(--bg);">
                                     <div style="display: flex; align-items: center; gap: 10px;">
                                         <input type="checkbox" name="Gifts[]" value="Kitty Keychain" data-price="210" class="gift-checkbox" style="width: 18px; height: 18px; accent-color: var(--gold);">
+                                        <img src="images/handmade_magic/kittykeyring.png" alt="Kitty Keychain" style="width: 40px; height: 40px; object-fit: cover; border-radius: 6px;">
                                         <span style="color: var(--gold); font-size: 0.95rem;">Kitty Keychain</span>
                                     </div>
                                     <span style="font-size: 0.9rem; color: var(--text-muted);">+ NPR 210</span>
@@ -832,6 +833,7 @@
                                 <label style="display: flex; justify-content: space-between; align-items: center; padding: 12px; border: 1px solid var(--glass-border); border-radius: 8px; cursor: pointer; background: var(--bg);">
                                     <div style="display: flex; align-items: center; gap: 10px;">
                                         <input type="checkbox" name="Gifts[]" value="Crochet Cherry Hair Bow" data-price="250" class="gift-checkbox" style="width: 18px; height: 18px; accent-color: var(--gold);">
+                                        <img src="images/handmade_magic/bowclip.png" alt="Crochet Cherry Hair Bow" style="width: 40px; height: 40px; object-fit: cover; border-radius: 6px;">
                                         <span style="color: var(--gold); font-size: 0.95rem;">Crocheted Hairclip</span>
                                     </div>
                                     <span style="font-size: 0.9rem; color: var(--text-muted);">+ NPR 250</span>
@@ -839,6 +841,7 @@
                                 <label style="display: flex; justify-content: space-between; align-items: center; padding: 12px; border: 1px solid var(--glass-border); border-radius: 8px; cursor: pointer; background: var(--bg);">
                                     <div style="display: flex; align-items: center; gap: 10px;">
                                         <input type="checkbox" name="Gifts[]" value="Crochet Sunflower Bouquet" data-price="250" class="gift-checkbox" style="width: 18px; height: 18px; accent-color: var(--gold);">
+                                        <img src="images/handmade_magic/sunflower.png" alt="Crochet Sunflower Bouquet" style="width: 40px; height: 40px; object-fit: cover; border-radius: 6px;">
                                         <span style="color: var(--gold); font-size: 0.95rem;">Sunflower Crochet</span>
                                     </div>
                                     <span style="font-size: 0.9rem; color: var(--text-muted);">+ NPR 250</span>
@@ -936,7 +939,7 @@
                         <span class="footer-logo-title">Chitthi</span>
                     </a>
                     <p class="footer-tagline">
-                        Nepal's first future letter platform. Preserving emotions and delivering them exactly when they matter most. Letters that travel through time.
+                        Nepal's first future letter space. Preserving emotions and delivering them exactly when they matter most. Letters that travel through time.
                     </p>
                 </div>
 
