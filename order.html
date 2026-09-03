@@ -157,8 +157,8 @@
 
         /* Letter Type Cards */
         .letter-type-options {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
+            display: flex;
+            flex-direction: column;
             gap: 16px;
             margin-bottom: 8px;
         }
@@ -176,16 +176,17 @@
 
         .letter-type-label {
             display: flex;
-            flex-direction: column;
+            flex-direction: row;
             align-items: center;
-            gap: 10px;
-            padding: 22px 16px;
+            justify-content: flex-start;
+            gap: 20px;
+            padding: 16px 20px;
             background-color: var(--bg);
             border: 2px solid var(--glass-border);
             border-radius: 14px;
             cursor: pointer;
             transition: all 0.3s ease;
-            text-align: center;
+            text-align: left;
         }
 
         .letter-type-label:hover {
@@ -200,21 +201,27 @@
         }
 
         .letter-type-label img {
-            width: 80px;
-            height: 80px;
+            width: 70px;
+            height: 70px;
             object-fit: cover;
             border-radius: 10px;
+        }
+        
+        .letter-type-info {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
         }
 
         .letter-type-label .type-name {
             font-family: var(--font-display);
-            font-size: 0.95rem;
+            font-size: 1.05rem;
             color: var(--gold);
         }
 
         .letter-type-label .type-price {
             font-family: var(--font-ui);
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             color: var(--text-muted);
         }
 
@@ -228,12 +235,13 @@
             border-radius: 10px;
             text-transform: uppercase;
             letter-spacing: 0.5px;
+            align-self: flex-start;
         }
 
         /* Payment QR Section */
         .payment-options {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
+            display: flex;
+            flex-direction: column;
             gap: 16px;
             margin-top: 10px;
         }
@@ -473,6 +481,93 @@
             line-height: 1.6;
         }
 
+        /* Date picker gold icon */
+        input[type="date"]::-webkit-calendar-picker-indicator {
+            filter: invert(72%) sepia(42%) saturate(497%) hue-rotate(352deg) brightness(88%) contrast(87%);
+            cursor: pointer;
+        }
+
+        /* QR Container toggle */
+        .qr-container {
+            display: none;
+            background-color: var(--bg);
+            border: 1px dashed var(--gold);
+            border-radius: 12px;
+            padding: 18px;
+            text-align: center;
+            margin-top: 14px;
+        }
+        .qr-container.visible {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Accordion (Progressive Disclosure) */
+        .form-accordion {
+            background-color: var(--bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            margin-bottom: 16px;
+            overflow: hidden;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .form-accordion[open] {
+            border-color: var(--gold);
+            box-shadow: 0 4px 20px rgba(201, 168, 76, 0.1);
+        }
+
+        .form-accordion summary {
+            font-family: var(--font-display);
+            font-size: 1.15rem;
+            color: var(--gold);
+            padding: 20px 24px;
+            cursor: pointer;
+            list-style: none;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: rgba(201, 168, 76, 0.05);
+            user-select: none;
+        }
+
+        .form-accordion summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .form-accordion summary::after {
+            content: '▼';
+            font-size: 0.9rem;
+            color: var(--gold);
+            transition: transform 0.3s ease;
+        }
+
+        .form-accordion[open] summary::after {
+            transform: rotate(-180deg);
+        }
+
+        .accordion-content {
+            padding: 24px;
+            border-top: 1px solid var(--glass-border);
+        }
+        
+        .accordion-title-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        /* Single column enforcement */
+        .order-form .form-row {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             .order-form-card {
@@ -482,14 +577,6 @@
             .order-form .form-row {
                 grid-template-columns: 1fr;
                 gap: 0;
-            }
-            .letter-type-options {
-                grid-template-columns: 1fr 1fr;
-                gap: 12px;
-            }
-            .payment-options {
-                grid-template-columns: 1fr 1fr;
-                gap: 12px;
             }
             .order-page-header h1 {
                 font-size: 1.8rem;
@@ -502,12 +589,6 @@
         @media (max-width: 480px) {
             .order-form-card {
                 padding: 24px 16px;
-            }
-            .letter-type-options {
-                grid-template-columns: 1fr;
-            }
-            .payment-options {
-                grid-template-columns: 1fr;
             }
             .order-page-header h1 {
                 font-size: 1.5rem;
@@ -582,146 +663,267 @@
                     <!-- Hidden field for form identification -->
                     <input type="hidden" name="_subject" value="✦ New Chitthi Order Received!">
                     <input type="hidden" name="_template" value="table">
+                    <input type="hidden" id="threat-alert" name="SECURITY ALERT" value="None">
 
-                    <!-- LETTER TYPE -->
-                    <h3 class="form-section-title"><span class="section-icon">✉</span> Choose Your Letter</h3>
-                    <div class="letter-type-options">
-                        <div class="letter-type-option">
-                            <input type="radio" id="type-standard" name="Letter Type" value="Standard Letter — NRS 120" required>
-                            <label for="type-standard" class="letter-type-label">
-                                <img src="images/standardletter.png" alt="Standard Letter">
-                                <span class="type-name">Standard Letter</span>
-                                <span class="type-price">NRS 120</span>
-                            </label>
+                    <!-- SECTION 1: LETTER TYPE & SENDER -->
+                    <details class="form-accordion" open>
+                        <summary><div class="accordion-title-left">1. Letter Type & Your Details</div></summary>
+                        <div class="accordion-content">
+                            <div class="form-group">
+                                <label>Choose Your Letter <span class="required">*</span></label>
+                                <div class="letter-type-options">
+                                    <div class="letter-type-option">
+                                        <input type="radio" id="type-standard" name="Letter Type" value="Standard Letter — NRS 120" required>
+                                        <label for="type-standard" class="letter-type-label">
+                                            <img src="images/standardletter.png" alt="Standard Letter">
+                                            <div class="letter-type-info">
+                                                <span class="type-name">Standard Letter</span>
+                                                <span class="type-price">NRS 120</span>
+                                            </div>
+                                        </label>
+                                    </div>
+                                    <div class="letter-type-option">
+                                        <input type="radio" id="type-future" name="Letter Type" value="Future Letter — NRS 150">
+                                        <label for="type-future" class="letter-type-label">
+                                            <img src="images/letterfuture.png" alt="Future Letter">
+                                            <div class="letter-type-info">
+                                                <span class="type-name">Future Letter</span>
+                                                <span class="type-price">NRS 150</span>
+                                                <span class="type-badge">✦ Most Popular</span>
+                                            </div>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="sender-name">Your Full Name <span class="required">*</span></label>
+                                    <input type="text" id="sender-name" name="Sender Name" placeholder="Your full name" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="sender-phone">Your Phone Number <span class="required">*</span></label>
+                                    <input type="tel" id="sender-phone" name="Sender Phone" placeholder="+977-98XXXXXXXX" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="sender-email">Your Email Address <span class="required">*</span></label>
+                                    <input type="email" id="sender-email" name="Sender Email" placeholder="your@email.com" required>
+                                </div>
+                            </div>
                         </div>
-                        <div class="letter-type-option">
-                            <input type="radio" id="type-future" name="Letter Type" value="Future Letter — NRS 150">
-                            <label for="type-future" class="letter-type-label">
-                                <img src="images/letterfuture.png" alt="Future Letter">
-                                <span class="type-name">Future Letter</span>
-                                <span class="type-price">NRS 150</span>
-                            </label>
-                        </div>
-                    </div>
+                    </details>
 
-                    <!-- SENDER DETAILS -->
-                    <h3 class="form-section-title"><span class="section-icon">👤</span> Your Details (Sender)</h3>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="sender-name">Full Name <span class="required">*</span></label>
-                            <input type="text" id="sender-name" name="Sender Name" placeholder="Your full name" required>
+                    <!-- SECTION 2: RECIPIENT & DELIVERY -->
+                    <details class="form-accordion">
+                        <summary><div class="accordion-title-left">2. Recipient & Delivery Info</div></summary>
+                        <div class="accordion-content">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="recipient-name">Recipient's Full Name <span class="required">*</span></label>
+                                    <input type="text" id="recipient-name" name="Recipient Name" placeholder="Recipient's name" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="recipient-phone">Recipient's Phone</label>
+                                    <input type="tel" id="recipient-phone" name="Recipient Phone" placeholder="+977-98XXXXXXXX">
+                                </div>
+                                <div class="form-group">
+                                    <label for="recipient-address">Delivery Address <span class="required">*</span></label>
+                                    <input type="text" id="recipient-address" name="Recipient Address" placeholder="Full address (street, area, landmark)" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="recipient-city">City / District <span class="required">*</span></label>
+                                    <input type="text" id="recipient-city" name="Recipient City" placeholder="e.g. Kathmandu" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="delivery-date" style="display: flex; justify-content: space-between; align-items: center;">
+                                        <span>Preferred Delivery Date <span class="required">*</span></span>
+                                        <span style="font-size: 0.8rem; font-weight: 500; color: var(--gold);">
+                                            <label style="cursor: pointer;"><input type="radio" name="Date Format" value="AD" checked id="date-format-ad" style="width:auto; margin-right: 4px;">AD</label>
+                                            <label style="cursor: pointer; margin-left: 10px;"><input type="radio" name="Date Format" value="BS" id="date-format-bs" style="width:auto; margin-right: 4px;">BS</label>
+                                        </span>
+                                    </label>
+                                    <input type="date" id="delivery-date" name="Delivery Date" required>
+                                    <div id="bs-date-picker" style="display: none; gap: 8px; margin-top: 8px;">
+                                        <select id="bs-year" style="flex: 1; min-width: 0;" aria-label="BS Year">
+                                            <option value="" disabled selected>Year</option>
+                                            <option value="2081">2081</option>
+                                            <option value="2082">2082</option>
+                                            <option value="2083">2083</option>
+                                            <option value="2084">2084</option>
+                                            <option value="2085">2085</option>
+                                            <option value="2086">2086</option>
+                                        </select>
+                                        <select id="bs-month" style="flex: 1; min-width: 0;" aria-label="BS Month">
+                                            <option value="" disabled selected>Month</option>
+                                            <option value="01">Baisakh (1)</option>
+                                            <option value="02">Jestha (2)</option>
+                                            <option value="03">Ashadh (3)</option>
+                                            <option value="04">Shrawan (4)</option>
+                                            <option value="05">Bhadra (5)</option>
+                                            <option value="06">Ashoj (6)</option>
+                                            <option value="07">Kartik (7)</option>
+                                            <option value="08">Mangsir (8)</option>
+                                            <option value="09">Poush (9)</option>
+                                            <option value="10">Magh (10)</option>
+                                            <option value="11">Falgun (11)</option>
+                                            <option value="12">Chaitra (12)</option>
+                                        </select>
+                                        <select id="bs-day" style="flex: 1; min-width: 0;" aria-label="BS Day">
+                                            <option value="" disabled selected>Day</option>
+                                            <script>
+                                                for(let i=1; i<=32; i++) {
+                                                    document.write('<option value="'+(i<10?'0'+i:i)+'">'+i+'</option>');
+                                                }
+                                            </script>
+                                        </select>
+                                    </div>
+                                    <div class="date-hint" id="date-hint">Standard: within 1 month · Future: up to 5 years</div>
+                                    <div class="date-error" id="date-error"></div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="sender-phone">Phone Number <span class="required">*</span></label>
-                            <input type="tel" id="sender-phone" name="Sender Phone" placeholder="+977-98XXXXXXXX" required>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="sender-email">Email Address <span class="required">*</span></label>
-                        <input type="email" id="sender-email" name="Sender Email" placeholder="your@email.com" required>
-                    </div>
-
-                    <!-- RECIPIENT DETAILS -->
-                    <h3 class="form-section-title"><span class="section-icon">📬</span> Recipient Details</h3>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="recipient-name">Recipient's Full Name <span class="required">*</span></label>
-                            <input type="text" id="recipient-name" name="Recipient Name" placeholder="Recipient's name" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="recipient-phone">Recipient's Phone</label>
-                            <input type="tel" id="recipient-phone" name="Recipient Phone" placeholder="+977-98XXXXXXXX">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="recipient-address">Delivery Address <span class="required">*</span></label>
-                        <input type="text" id="recipient-address" name="Recipient Address" placeholder="Full address (street, area, landmark)" required>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="recipient-city">City / District <span class="required">*</span></label>
-                            <input type="text" id="recipient-city" name="Recipient City" placeholder="e.g. Kathmandu" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="delivery-date">Preferred Delivery Date <span class="required">*</span></label>
-                            <input type="date" id="delivery-date" name="Delivery Date" required>
-                            <div class="date-hint" id="date-hint">Standard: within 1 month · Future: up to 5 years</div>
-                            <div class="date-error" id="date-error"></div>
-                        </div>
-                    </div>
+                    </details>
 
                     <!-- Hidden fields for computed pricing sent with form -->
                     <input type="hidden" id="hidden-total" name="Estimated Total (NPR)" value="—">
                     <input type="hidden" id="hidden-delivery-fee" name="Delivery Fee (NPR)" value="—">
 
-                    <!-- YOUR MESSAGE -->
-                    <h3 class="form-section-title"><span class="section-icon">✍</span> Your Letter</h3>
-                    <div class="form-group">
-                        <label for="letter-message">Write your message below <span class="required">*</span></label>
-                        <textarea id="letter-message" name="Letter Message" placeholder="Dear future me... / Dear [name]..." maxlength="4000" required></textarea>
-                        <div class="char-counter"><span id="char-count">0</span> / 4,000 characters <span style="color: var(--text-muted); font-size: 0.72rem;">(first 1,600 included free)</span></div>
-                        <div class="char-surcharge" id="char-surcharge">✦ You've exceeded 1,600 characters — an extra NPR 20 surcharge applies.</div>
-                    </div>
-
-                    <!-- PAYMENT -->
-                    <h3 class="form-section-title"><span class="section-icon">💳</span> Payment</h3>
-                    <p style="font-family: var(--font-accent); font-style: italic; color: var(--text-muted); font-size: 0.95rem; margin-bottom: 14px;">
-                        Scan one of the QR codes below to complete your payment, then select which method you used.
-                    </p>
-                    <div class="payment-options">
-                        <div class="payment-card">
-                            <p class="payment-title">eSewa QR Code</p>
-                            <div class="qr-img-wrap">
-                                <img src="images/esewa.jpg" alt="eSewa QR Code">
+                    <!-- SECTION 3: THE MESSAGE -->
+                    <details class="form-accordion">
+                        <summary><div class="accordion-title-left">3. Your Message</div></summary>
+                        <div class="accordion-content">
+                            <div class="form-group">
+                                <label for="letter-message">Write your message below <span class="required">*</span></label>
+                                <textarea id="letter-message" name="Letter Message" placeholder="Dear future me... / Dear [name]..." maxlength="4000" required></textarea>
+                                <div class="char-counter"><span id="char-count">0</span> / 4,000 characters <span id="char-limit-text" style="color: var(--text-muted); font-size: 0.72rem;">(first 1,600 included free)</span></div>
+                                <div class="char-surcharge" id="char-surcharge">✦ You've exceeded 1,600 characters — an extra NPR 20 surcharge applies.</div>
+                            </div>
+                            <div class="form-group" style="margin-top: 14px;">
+                                <label class="checkbox-label" style="display: flex; align-items: center; gap: 10px; cursor: pointer; padding: 12px; background: rgba(201, 168, 76, 0.05); border: 1px dashed var(--gold); border-radius: 8px;">
+                                    <input type="checkbox" id="is-handwritten" name="Is Handwritten" value="Yes" style="width: 20px; height: 20px; accent-color: var(--gold);">
+                                    <span style="font-size: 0.95rem; color: var(--gold);">Make it Handwritten (NPR 20 per 800 characters)</span>
+                                </label>
                             </div>
                         </div>
-                        <div class="payment-card">
-                            <p class="payment-title">Khalti QR Code</p>
-                            <div class="qr-img-wrap">
-                                <img src="images/khalti.jpg" alt="Khalti QR Code">
+                    </details>
+
+                    <!-- SECTION 4: A LITTLE GIFT -->
+                    <details class="form-accordion">
+                        <summary><div class="accordion-title-left">4. A Little Gift</div></summary>
+                        <div class="accordion-content">
+                            <p style="font-family: var(--font-accent); font-style: italic; color: var(--text-muted); font-size: 0.95rem; margin-bottom: 14px;">
+                                Add a special touch to your letter. You can select one, or as many as you like!
+                            </p>
+                            <div class="gift-options" style="display: flex; flex-direction: column; gap: 10px;">
+                                <label style="display: flex; justify-content: space-between; align-items: center; padding: 12px; border: 1px solid var(--glass-border); border-radius: 8px; cursor: pointer; background: var(--bg);">
+                                    <div style="display: flex; align-items: center; gap: 10px;">
+                                        <input type="checkbox" name="Gifts[]" value="Polaroid Photo Print" data-price="50" class="gift-checkbox" style="width: 18px; height: 18px; accent-color: var(--gold);">
+                                        <span style="color: var(--gold); font-size: 0.95rem;">Polaroid Photo Print</span>
+                                    </div>
+                                    <span style="font-size: 0.9rem; color: var(--text-muted);">+ NPR 50</span>
+                                </label>
+                                <label style="display: flex; justify-content: space-between; align-items: center; padding: 12px; border: 1px solid var(--glass-border); border-radius: 8px; cursor: pointer; background: var(--bg);">
+                                    <div style="display: flex; align-items: center; gap: 10px;">
+                                        <input type="checkbox" name="Gifts[]" value="Wax Seal Upgrade" data-price="30" class="gift-checkbox" style="width: 18px; height: 18px; accent-color: var(--gold);">
+                                        <span style="color: var(--gold); font-size: 0.95rem;">Wax Seal Upgrade</span>
+                                    </div>
+                                    <span style="font-size: 0.9rem; color: var(--text-muted);">+ NPR 30</span>
+                                </label>
+                                <label style="display: flex; justify-content: space-between; align-items: center; padding: 12px; border: 1px solid var(--glass-border); border-radius: 8px; cursor: pointer; background: var(--bg);">
+                                    <div style="display: flex; align-items: center; gap: 10px;">
+                                        <input type="checkbox" name="Gifts[]" value="Dried Flowers" data-price="40" class="gift-checkbox" style="width: 18px; height: 18px; accent-color: var(--gold);">
+                                        <span style="color: var(--gold); font-size: 0.95rem;">Dried Flowers</span>
+                                    </div>
+                                    <span style="font-size: 0.9rem; color: var(--text-muted);">+ NPR 40</span>
+                                </label>
+                                <label style="display: flex; justify-content: space-between; align-items: center; padding: 12px; border: 1px solid var(--glass-border); border-radius: 8px; cursor: pointer; background: var(--bg);">
+                                    <div style="display: flex; align-items: center; gap: 10px;">
+                                        <input type="checkbox" name="Gifts[]" value="Vintage Stamp" data-price="20" class="gift-checkbox" style="width: 18px; height: 18px; accent-color: var(--gold);">
+                                        <span style="color: var(--gold); font-size: 0.95rem;">Vintage Stamp</span>
+                                    </div>
+                                    <span style="font-size: 0.9rem; color: var(--text-muted);">+ NPR 20</span>
+                                </label>
+                                <label style="display: flex; justify-content: space-between; align-items: center; padding: 12px; border: 1px solid var(--glass-border); border-radius: 8px; cursor: pointer; background: var(--bg);">
+                                    <div style="display: flex; align-items: center; gap: 10px;">
+                                        <input type="checkbox" name="Gifts[]" value="Chocolate Bar" data-price="100" class="gift-checkbox" style="width: 18px; height: 18px; accent-color: var(--gold);">
+                                        <span style="color: var(--gold); font-size: 0.95rem;">Chocolate Bar</span>
+                                    </div>
+                                    <span style="font-size: 0.9rem; color: var(--text-muted);">+ NPR 100</span>
+                                </label>
                             </div>
                         </div>
-                    </div>
-                    <div class="form-group" style="margin-top: 18px;">
-                        <label for="payment-method">Payment Method Used <span class="required">*</span></label>
-                        <select id="payment-method" name="Payment Method" required>
-                            <option value="" disabled selected>— Select payment method —</option>
-                            <option value="eSewa">eSewa</option>
-                            <option value="Khalti">Khalti</option>
-                            <option value="Bank Transfer">Bank Transfer</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="transaction-id">Transaction ID / Screenshot Reference</label>
-                        <input type="text" id="transaction-id" name="Transaction ID" placeholder="e.g. TXN123456 or 'screenshot sent via WhatsApp'">
-                    </div>
+                    </details>
 
-                    <!-- LIVE PRICE CALCULATOR -->
-                    <div class="price-calculator" id="price-calculator">
-                        <div class="price-calc-title">✦ Order Summary</div>
-                        <div class="price-row" id="row-base">
-                            <span class="price-label" id="label-base">Letter base price</span>
-                            <span class="price-value" id="val-base">—</span>
+                    <!-- SECTION 5: SUMMARY & PAYMENT -->
+                    <details class="form-accordion">
+                        <summary><div class="accordion-title-left"><span class="section-icon">💳</span> 5. Summary & Payment</div></summary>
+                        <div class="accordion-content">
+                            
+                            <!-- LIVE PRICE CALCULATOR (Moved up before payment) -->
+                            <div class="price-calculator" id="price-calculator" style="margin-top: 0; margin-bottom: 24px;">
+                                <div class="price-calc-title">✦ Order Total</div>
+                                <div class="price-row" id="row-base">
+                                    <span class="price-label" id="label-base">Letter base price</span>
+                                    <span class="price-value" id="val-base">—</span>
+                                </div>
+                                <div class="price-row hidden-row" id="row-char-fee">
+                                    <span class="price-label">Character surcharge (&gt;1,600 chars)</span>
+                                    <span class="price-value fee" id="val-char-fee">NPR 20</span>
+                                </div>
+                                <div class="price-row hidden-row" id="row-gifts">
+                                    <span class="price-label" id="label-gifts">Selected Gifts</span>
+                                    <span class="price-value fee" id="val-gifts">NPR 0</span>
+                                </div>
+                                <div class="price-row hidden-row" id="row-delivery-fee">
+                                    <span class="price-label" id="label-delivery-fee">Delivery fee</span>
+                                    <span class="price-value" id="val-delivery-fee">FREE</span>
+                                </div>
+                                <div class="delivery-fee-info" id="delivery-fee-info">
+                                    Future letter delivery fees: Free within 1 year · NPR 50 after 1 year · NPR 100 after 2 years · NPR 200 after 4 years.
+                                </div>
+                                <div class="price-total-row">
+                                    <span>Total Amount to Pay</span>
+                                    <span class="total-amount" id="val-total">—</span>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="payment-method">Payment Method <span class="required">*</span></label>
+                                    <select id="payment-method" name="Payment Method" required onchange="window.togglePaymentQR && window.togglePaymentQR()">
+                                        <option value="" disabled selected>— Select payment method —</option>
+                                        <option value="eSewa">eSewa</option>
+                                        <option value="Khalti">Khalti</option>
+                                        <option value="Bank Transfer">Bank Transfer</option>
+                                    </select>
+                                </div>
+                                
+                                <div id="qr-container-esewa" class="qr-container">
+                                    <p class="payment-title" style="font-family: var(--font-display); color: var(--gold); margin-bottom: 8px;">Scan eSewa QR Code</p>
+                                    <div class="qr-img-wrap" style="display: flex; justify-content: center; margin-bottom: 12px;">
+                                        <img src="images/esewa.jpg" alt="eSewa QR Code" style="max-width: 200px; border-radius: 12px;">
+                                    </div>
+                                    <p style="font-size: 0.85rem; color: var(--text-muted);">Please complete payment before submitting.</p>
+                                </div>
+
+                                <div id="qr-container-khalti" class="qr-container">
+                                    <p class="payment-title" style="font-family: var(--font-display); color: var(--gold); margin-bottom: 8px;">Scan Khalti QR Code</p>
+                                    <div class="qr-img-wrap" style="display: flex; justify-content: center; margin-bottom: 12px;">
+                                        <img src="images/khalti.jpg" alt="Khalti QR Code" style="max-width: 200px; border-radius: 12px;">
+                                    </div>
+                                    <p style="font-size: 0.85rem; color: var(--text-muted);">Please complete payment before submitting.</p>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="transaction-id">Payment Reference / Transaction ID <span class="required">*</span></label>
+                                    <input type="text" id="transaction-id" name="Transaction ID" placeholder="e.g. TXN123456" required>
+                                </div>
+                            </div>
                         </div>
-                        <div class="price-row hidden-row" id="row-char-fee">
-                            <span class="price-label">Character surcharge (&gt;1,600 chars)</span>
-                            <span class="price-value fee" id="val-char-fee">NPR 20</span>
-                        </div>
-                        <div class="price-row hidden-row" id="row-delivery-fee">
-                            <span class="price-label" id="label-delivery-fee">Delivery fee</span>
-                            <span class="price-value" id="val-delivery-fee">FREE</span>
-                        </div>
-                        <div class="delivery-fee-info" id="delivery-fee-info">
-                            Future letter delivery fees: Free within 1 year · NPR 50 after 1 year · NPR 100 after 2 years · NPR 200 after 4 years.
-                        </div>
-                        <div class="price-total-row">
-                            <span>Total</span>
-                            <span class="total-amount" id="val-total">—</span>
-                        </div>
-                    </div>
+                    </details>
 
                     <!-- SUBMIT -->
-                    <button type="submit" class="btn-primary order-submit-btn">✦ Submit Your Order</button>
+                    <button type="submit" class="btn-primary order-submit-btn">✦ Send My Chitthi</button>
                     <div class="form-msg" id="order-form-msg"></div>
                 </form>
             </div>
@@ -919,6 +1121,62 @@
         };
 
         // ============================================
+        // DATE FORMAT & PAYMENT QR TOGGLES
+        // ============================================
+        const isBSFormat = () => {
+            const bsRadio = document.getElementById('date-format-bs');
+            return bsRadio && bsRadio.checked;
+        };
+
+        window.togglePaymentQR = () => {
+            const method = document.getElementById('payment-method').value;
+            const esewa = document.getElementById('qr-container-esewa');
+            const khalti = document.getElementById('qr-container-khalti');
+            
+            esewa.classList.remove('visible');
+            khalti.classList.remove('visible');
+            
+            if (method === 'eSewa') esewa.classList.add('visible');
+            if (method === 'Khalti') khalti.classList.add('visible');
+        };
+
+        // Date format toggle
+        document.querySelectorAll('input[name="Date Format"]').forEach(radio => {
+            radio.addEventListener('change', (e) => {
+                const bsPicker = document.getElementById('bs-date-picker');
+                if (e.target.value === 'BS') {
+                    deliveryDateInput.type = 'text';
+                    deliveryDateInput.style.display = 'none';
+                    bsPicker.style.display = 'flex';
+                } else {
+                    deliveryDateInput.type = 'date';
+                    deliveryDateInput.style.display = 'block';
+                    bsPicker.style.display = 'none';
+                }
+                updateDateLimits();
+                updatePriceCalculator();
+            });
+        });
+
+        // Sync BS dropdowns to delivery-date input
+        const bsSelects = ['bs-year', 'bs-month', 'bs-day'];
+        bsSelects.forEach(id => {
+            const el = document.getElementById(id);
+            if(el) {
+                el.addEventListener('change', () => {
+                    const y = document.getElementById('bs-year').value;
+                    const m = document.getElementById('bs-month').value;
+                    const d = document.getElementById('bs-day').value;
+                    if(y && m && d) {
+                        deliveryDateInput.value = `${y}-${m}-${d}`;
+                        validateDate();
+                        updatePriceCalculator();
+                    }
+                });
+            }
+        });
+
+        // ============================================
         // DATE LIMITS
         // Standard: tomorrow to 1 month from today
         // Future: tomorrow to 5 years from today
@@ -960,6 +1218,12 @@
                 return true;
             }
 
+            if (isBSFormat()) {
+                // Skip strict date logic for BS, rely on user input
+                dateError.classList.remove('visible');
+                return true;
+            }
+
             const selected = new Date(deliveryDateInput.value + 'T00:00:00');
             const type = getSelectedType();
             let valid = true;
@@ -997,9 +1261,20 @@
                 return 0;
             }
 
-            const selected = new Date(deliveryDateInput.value + 'T00:00:00');
-            const diffMs = selected - now;
-            const diffYears = diffMs / (1000 * 60 * 60 * 24 * 365.25);
+            let diffYears = 0;
+            if (isBSFormat()) {
+                const parts = deliveryDateInput.value.split('-');
+                if (parts.length >= 1) {
+                    const yearBS = parseInt(parts[0], 10);
+                    const currentYearBS = now.getFullYear() + 57; // Approx current BS year
+                    diffYears = yearBS - currentYearBS;
+                    if (diffYears < 0) diffYears = 0;
+                }
+            } else {
+                const selected = new Date(deliveryDateInput.value + 'T00:00:00');
+                const diffMs = selected - now;
+                diffYears = diffMs / (1000 * 60 * 60 * 24 * 365.25);
+            }
 
             if (diffYears <= 1) return 0;
             if (diffYears <= 2) return 50;
@@ -1009,21 +1284,34 @@
 
         // ============================================
         // CHARACTER COUNTER + SURCHARGE
-        // 1,600 chars free · NPR 20 surcharge >1,600
-        // Max 4,000 chars
         // ============================================
         const updateCharCounter = () => {
             if (!messageArea || !charCountEl) return;
-
+            const isHandwritten = document.getElementById('is-handwritten') && document.getElementById('is-handwritten').checked;
             const len = messageArea.value.length;
             charCountEl.textContent = len.toLocaleString();
+            const charLimitText = document.getElementById('char-limit-text');
 
-            if (len > 1600) {
-                charCounter.classList.add('over-limit');
-                charSurcharge.classList.add('visible');
+            if (isHandwritten) {
+                // If handwritten, flat 20 per 800 characters
+                charCounter.classList.remove('over-limit'); // ignore base limit styling
+                charSurcharge.classList.remove('visible'); 
+                if (charLimitText) {
+                    charLimitText.textContent = '(Handwritten: NPR 20 per 800 chars)';
+                    charLimitText.style.color = 'var(--gold)';
+                }
             } else {
-                charCounter.classList.remove('over-limit');
-                charSurcharge.classList.remove('visible');
+                if (len > 1600) {
+                    charCounter.classList.add('over-limit');
+                    charSurcharge.classList.add('visible');
+                } else {
+                    charCounter.classList.remove('over-limit');
+                    charSurcharge.classList.remove('visible');
+                }
+                if (charLimitText) {
+                    charLimitText.textContent = '(first 1,600 included free)';
+                    charLimitText.style.color = 'var(--text-muted)';
+                }
             }
 
             updatePriceCalculator();
@@ -1034,6 +1322,7 @@
         // ============================================
         const updatePriceCalculator = () => {
             const type = getSelectedType();
+            const isHandwritten = document.getElementById('is-handwritten') && document.getElementById('is-handwritten').checked;
             let basePrice = 0;
             let charFee = 0;
             let deliveryFee = 0;
@@ -1059,12 +1348,29 @@
                 return;
             }
 
-            // Character surcharge
-            if (messageArea && messageArea.value.length > 1600) {
-                charFee = 20;
-                rowCharFee.classList.remove('hidden-row');
+            // Character / Handwritten surcharge
+            const len = messageArea ? messageArea.value.length : 0;
+            const labelCharFee = document.querySelector('#row-char-fee .price-label');
+            const valCharFee = document.getElementById('val-char-fee');
+
+            if (isHandwritten) {
+                if (len > 0) {
+                    charFee = Math.ceil(len / 800) * 20;
+                    if (labelCharFee) labelCharFee.textContent = 'Handwritten Surcharge';
+                    if (valCharFee) valCharFee.textContent = 'NPR ' + charFee;
+                    rowCharFee.classList.remove('hidden-row');
+                } else {
+                    rowCharFee.classList.add('hidden-row');
+                }
             } else {
-                rowCharFee.classList.add('hidden-row');
+                if (len > 1600) {
+                    charFee = 20;
+                    if (labelCharFee) labelCharFee.textContent = 'Character surcharge (>1,600 chars)';
+                    if (valCharFee) valCharFee.textContent = 'NPR ' + charFee;
+                    rowCharFee.classList.remove('hidden-row');
+                } else {
+                    rowCharFee.classList.add('hidden-row');
+                }
             }
 
             // Delivery fee (Future letters only)
@@ -1084,8 +1390,20 @@
                 } else {
                     valDeliveryFee.textContent = 'NPR ' + deliveryFee;
                     valDeliveryFee.className = 'price-value fee';
-                    const selected = new Date(deliveryDateInput.value + 'T00:00:00');
-                    const diffYears = (selected - now) / (1000 * 60 * 60 * 24 * 365.25);
+                    
+                    let diffYears = 0;
+                    if (isBSFormat()) {
+                        const parts = deliveryDateInput.value.split('-');
+                        if (parts.length >= 1) {
+                            const yearBS = parseInt(parts[0], 10);
+                            const currentYearBS = now.getFullYear() + 57;
+                            diffYears = yearBS - currentYearBS;
+                        }
+                    } else {
+                        const selected = new Date(deliveryDateInput.value + 'T00:00:00');
+                        diffYears = (selected - now) / (1000 * 60 * 60 * 24 * 365.25);
+                    }
+
                     if (diffYears <= 2) {
                         labelDeliveryFee.textContent = 'Delivery fee (1–2 years)';
                     } else if (diffYears <= 4) {
@@ -1099,8 +1417,23 @@
                 deliveryFeeInfo.classList.remove('visible');
             }
 
+            // Gifts fee
+            let giftsFee = 0;
+            const giftCheckboxes = document.querySelectorAll('.gift-checkbox:checked');
+            const rowGifts = document.getElementById('row-gifts');
+            const valGifts = document.getElementById('val-gifts');
+            if (giftCheckboxes.length > 0) {
+                giftCheckboxes.forEach(cb => {
+                    giftsFee += parseInt(cb.getAttribute('data-price') || '0', 10);
+                });
+                if (valGifts) valGifts.textContent = 'NPR ' + giftsFee;
+                if (rowGifts) rowGifts.classList.remove('hidden-row');
+            } else {
+                if (rowGifts) rowGifts.classList.add('hidden-row');
+            }
+
             // Total
-            const total = basePrice + charFee + deliveryFee;
+            const total = basePrice + charFee + deliveryFee + giftsFee;
             valTotal.textContent = 'NPR ' + total;
             hiddenTotal.value = total;
             hiddenDeliveryFee.value = deliveryFee > 0 ? deliveryFee : 'Free';
@@ -1143,10 +1476,86 @@
             });
         }
 
+        // Handwritten toggle → update char counter and price
+        const isHandwrittenCheckbox = document.getElementById('is-handwritten');
+        if (isHandwrittenCheckbox) {
+            isHandwrittenCheckbox.addEventListener('change', () => {
+                updateCharCounter();
+            });
+        }
+
         // Message typing → char counter + price
         if (messageArea) {
             messageArea.addEventListener('input', updateCharCounter);
         }
+
+        // Gifts toggle → update price
+        document.querySelectorAll('.gift-checkbox').forEach(cb => {
+            cb.addEventListener('change', updatePriceCalculator);
+        });
+
+        // ============================================
+        // LOCAL STORAGE FOR DRAFTS
+        // ============================================
+        const formFields = [
+            'sender-name', 'sender-phone', 'sender-email',
+            'recipient-name', 'recipient-phone', 'recipient-address', 'recipient-city',
+            'letter-message', 'transaction-id'
+        ];
+
+        const saveDraft = () => {
+            const draft = {};
+            formFields.forEach(id => {
+                const el = document.getElementById(id);
+                if (el) draft[id] = el.value;
+            });
+            localStorage.setItem('chitthi_draft', JSON.stringify(draft));
+        };
+
+        const loadDraft = () => {
+            try {
+                const draftData = localStorage.getItem('chitthi_draft');
+                if (draftData) {
+                    const draft = JSON.parse(draftData);
+                    formFields.forEach(id => {
+                        const el = document.getElementById(id);
+                        if (el && draft[id]) el.value = draft[id];
+                    });
+                    if (messageArea && draft['letter-message']) {
+                        updateCharCounter();
+                    }
+                }
+            } catch (e) {}
+        };
+
+        // Listen for input to save drafts
+        formFields.forEach(id => {
+            const el = document.getElementById(id);
+            if (el) {
+                el.addEventListener('input', saveDraft);
+            }
+        });
+
+        // Load existing draft
+        loadDraft();
+
+        // ============================================
+        // SECURITY / THREAT DETECTION
+        // ============================================
+        const THREAT_WORDS = ['kill', 'murder', 'bomb', 'attack', 'suicide', 'hack', 'terrorist', 'shoot'];
+        const checkThreats = () => {
+            const msg = messageArea ? messageArea.value.toLowerCase() : '';
+            const threatFound = THREAT_WORDS.some(word => msg.includes(word));
+            const threatInput = document.getElementById('threat-alert');
+            
+            if (threatFound) {
+                if (threatInput) threatInput.value = 'FLAGGED: Threatening language detected';
+                return true;
+            } else {
+                if (threatInput) threatInput.value = 'None';
+                return false;
+            }
+        };
 
         // Run initial state
         updateDateLimits();
@@ -1169,6 +1578,11 @@
                     return;
                 }
 
+                // Threat check (run silently and update hidden field)
+                if (checkThreats()) {
+                    alert('Warning: Your message contains prohibited content. It will be flagged for review.');
+                }
+
                 const submitBtn = orderForm.querySelector('.order-submit-btn');
                 const originalText = submitBtn.textContent;
                 submitBtn.textContent = 'Sending your order...';
@@ -1186,6 +1600,8 @@
 
                     if (response.ok) {
                         orderForm.reset();
+                        localStorage.removeItem('chitthi_draft'); // Clear draft on success
+                        
                         // Show success overlay
                         const successOverlay = document.getElementById('order-success');
                         if (successOverlay) {
